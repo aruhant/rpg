@@ -4,12 +4,11 @@ import 'package:flutter/services.dart';
 
 class PlayerOne extends PlatformPlayer with HandleForces {
   bool inTrunk = false;
-  PlayerOne({
-    required Vector2 position,
-  }) : super(
+  PlayerOne({required Vector2 position})
+      : super(
           position: position,
-          size: Vector2.all(33),
-          speed: 50,
+          size: Vector2.all(2 * 128),
+          speed: 128 * 4,
           animation: PlatformAnimations(
             idleRight: PlatformSpritesheet.playerIdleRight,
             runRight: PlatformSpritesheet.playerRunRight,
@@ -33,7 +32,7 @@ class PlayerOne extends PlatformPlayer with HandleForces {
   void onJoystickAction(JoystickActionEvent event) {
     if (event.event == ActionEvent.DOWN &&
         (event.id == LogicalKeyboardKey.space || event.id == 1)) {
-      jump();
+      jump(jumpSpeed: 128 * 3);
     }
     super.onJoystickAction(event);
   }

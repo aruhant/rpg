@@ -1,0 +1,14 @@
+{ "columns":15,
+ "image":"platform.png",
+ "imageheight":1920,
+ "imagewidth":1920,
+ "margin":0,
+ "name":"platform",
+ "spacing":0,
+ "tilecount":225,
+ "tiledversion":"1.10.2",
+ "tileheight":128,
+ "tilewidth":128,
+ "type":"tileset",
+ "version":"1.10"
+}

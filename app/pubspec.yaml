@@ -47,7 +47,7 @@ flutter:
   assets:
     - assets/audio/
     - assets/images/
-    - assets/tiles/
+    - assets/images/maps/
 
     - assets/images/platform/
     - assets/images/platform/sugreeva/

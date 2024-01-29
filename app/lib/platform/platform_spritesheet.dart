@@ -2,7 +2,7 @@ import 'package:bonfire/bonfire.dart';
 
 class PlatformSpritesheet {
   static Future<SpriteAnimation> get enemyExplosion => SpriteAnimation.load(
-        "platform/enemy-deadth.png",
+        "platform/enemy-death.png",
         SpriteAnimationData.sequenced(
           amount: 6,
           stepTime: 0.08,
@@ -83,12 +83,20 @@ class PlatformSpritesheet {
     });
   }
 
-  static Future<SpriteAnimation> get jewel => SpriteAnimation.load(
+  static Future<SpriteAnimation> get fire => SpriteAnimation.load(
         "platform/jewel.png",
         SpriteAnimationData.sequenced(
           amount: 4,
           stepTime: 0.08,
           textureSize: Vector2(86, 344 / 4),
+        ),
+      );
+  static Future<SpriteAnimation> get fireOn => SpriteAnimation.load(
+        "platform/fire.png",
+        SpriteAnimationData.sequenced(
+          amount: 9,
+          stepTime: 0.8,
+          textureSize: Vector2(192, 192),
         ),
       );
 
