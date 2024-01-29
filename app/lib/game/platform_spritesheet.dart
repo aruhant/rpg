@@ -11,7 +11,7 @@ class PlatformSpritesheet {
       );
 
   static Future<SpriteAnimation> get playerIdleRight => SpriteAnimation.load(
-        "platform/sugreeva/sugreeva-idle.png",
+        "platform/hanuman/hanuman-idle.png",
         SpriteAnimationData.sequenced(
           amount: 3,
           stepTime: 0.2,
@@ -20,7 +20,7 @@ class PlatformSpritesheet {
       );
 
   static Future<SpriteAnimation> get playerRunRight => SpriteAnimation.load(
-        "platform/sugreeva/sugreeva-run.png",
+        "platform/hanuman/hanuman-run.png",
         SpriteAnimationData.sequenced(
           amount: 5,
           stepTime: 0.1,
@@ -29,7 +29,7 @@ class PlatformSpritesheet {
       );
 
   static Future<SpriteAnimation> get playerJumpUp {
-    return Sprite.load("platform/sugreeva/sugreeva-jump.png",
+    return Sprite.load("platform/hanuman/hanuman-jump.png",
             srcSize: Vector2(108, 108))
         .then((value) {
       return SpriteAnimation.spriteList([value], stepTime: 1);
@@ -37,7 +37,7 @@ class PlatformSpritesheet {
   }
 
   static Future<SpriteAnimation> get playerJumpDown {
-    return Sprite.load("platform/sugreeva/sugreeva-jump.png",
+    return Sprite.load("platform/hanuman/hanuman-jump.png",
             srcPosition: Vector2(108, 0), srcSize: Vector2(108, 108))
         .then((value) {
       return SpriteAnimation.spriteList([value], stepTime: 1);

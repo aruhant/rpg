@@ -50,7 +50,7 @@ flutter:
     - assets/images/maps/
 
     - assets/images/platform/
-    - assets/images/platform/sugreeva/
+    - assets/images/platform/hanuman/
     - assets/images/platform/rakshasa/
 flutter_launcher_icons:
   android: true
