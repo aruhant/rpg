@@ -6,14 +6,14 @@ import 'platform_game_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class LankaDahanLevel extends StatefulWidget {
-  const LankaDahanLevel({Key? key}) : super(key: key);
+class GameEngine extends StatefulWidget {
+  const GameEngine({Key? key}) : super(key: key);
 
   @override
-  State<LankaDahanLevel> createState() => _LankaDahanLevelState();
+  State<GameEngine> createState() => _GameEngineState();
 }
 
-class _LankaDahanLevelState extends State<LankaDahanLevel> {
+class _GameEngineState extends State<GameEngine> {
   Key _gameKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class _LankaDahanLevelState extends State<LankaDahanLevel> {
           ),
           actions: [
             JoystickAction(
-                actionId: 'joystickAction',
+                actionId: 'joystickJump',
                 margin: const EdgeInsets.all(70),
                 color: const Color.fromARGB(255, 72, 121, 99))
           ]),
@@ -48,7 +48,6 @@ class _LankaDahanLevelState extends State<LankaDahanLevel> {
       cameraConfig: CameraConfig(
         moveOnlyMapArea: true,
         zoom: getZoomFromMaxVisibleTile(context, 12, 128),
-        // initialMapZoomFit: InitialMapZoomFitEnum.fitWidth,
         speed: 1,
       ),
       player: PlayerOne(position: Vector2(128 * 5, 128 * 12)),
