@@ -1,4 +1,5 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'platform_spritesheet.dart';
 import 'package:flutter/services.dart';
 
@@ -32,6 +33,7 @@ class PlayerOne extends PlatformPlayer with HandleForces {
   void onJoystickAction(JoystickActionEvent event) {
     if (event.event == ActionEvent.DOWN &&
         (event.id == LogicalKeyboardKey.space || event.id == 'joystickJump')) {
+      FlameAudio.play('jump.mp3');
       jump(jumpSpeed: 128 * 3);
     }
     super.onJoystickAction(event);
@@ -51,6 +53,7 @@ class PlayerOne extends PlatformPlayer with HandleForces {
 
   @override
   void die() {
+    FlameAudio.play('die.mp3');
     removeFromParent();
     super.die();
   }
