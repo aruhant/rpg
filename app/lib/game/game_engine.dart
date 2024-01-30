@@ -19,6 +19,7 @@ class _GameEngineState extends State<GameEngine> {
   Widget build(BuildContext context) {
     return BonfireWidget(
       key: _gameKey,
+      showCollisionArea: false,
       map: WorldMapByTiled(
         TiledReader.asset(
           'maps/lanka_map.tmj',

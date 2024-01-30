@@ -15,10 +15,12 @@ class FlammableDecoration extends GameDecoration with Sensor {
   void onContact(GameComponent component) {
     if (component is Player && !_onFire) {
 // change the animation to burning fire
-      PlatformSpritesheet.fireOn.then((fire) => setAnimation(fire));
-      size = Vector2(76 * 3, 116 * 3);
-      position = position..translate(-76 * 1, -2 * 116);
-      _onFire = true;
+      PlatformSpritesheet.fireOn.then((fire) {
+        setAnimation(fire);
+        size = Vector2(76 * 3, 116 * 3);
+        position = position..translate(-76 * 1, -2 * 116);
+        _onFire = true;
+      });
     }
     super.onContact(component);
   }
