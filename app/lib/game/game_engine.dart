@@ -1,3 +1,13 @@
+/*
+This file is responsible for creating the game engine and setting up the game.
+It uses the Bonfire library to create the game engine and the game world.
+It also sets up the player and the enemies in the game. It also sets up the
+joystick and the camera for the game. It also sets up the background music for
+the game. It also sets up the reset function for the game. The reset function is 
+hsed to reset the game when the player dies. The game engine is used in the game
+screen to create the game world and the game engine. 
+*/
+/*MOVED IMPRESSIVE CODE SNIPPET to rakshasa.dart*/
 import 'package:bonfire/bonfire.dart';
 import 'player_one.dart';
 import 'rakshasa.dart';
@@ -19,7 +29,7 @@ class _GameEngineState extends State<GameEngine> {
   @override
   Widget build(BuildContext context) {
     // FlameAudio.bgm.play('bgm.m4a');
-
+    // This is used to build sprites and related actions
     return BonfireWidget(
       key: _gameKey,
       showCollisionArea: false,
@@ -33,6 +43,7 @@ class _GameEngineState extends State<GameEngine> {
               FlammableDecoration(position: properties.position),
         },
       ),
+      // This is used to build the joystick and the game controller
       joystick: Joystick(
           keyboardConfig: KeyboardConfig(acceptedKeys: [
             LogicalKeyboardKey.space,
@@ -54,6 +65,7 @@ class _GameEngineState extends State<GameEngine> {
         zoom: getZoomFromMaxVisibleTile(context, 12, 128),
         speed: 1,
       ),
+      // This is used to build the player and their position
       player: PlayerOne(position: Vector2(128 * 5, 128 * 12)),
     );
   }

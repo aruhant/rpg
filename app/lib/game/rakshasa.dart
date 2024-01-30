@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:bonfire/bonfire.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'player_one.dart';
@@ -57,25 +56,33 @@ class Rakshasa extends PlatformEnemy with HandleForces {
     );
   }
 
+  /*IMPRESSIVE CODE SNIPPET*/
   @override
+  // update method is used to update sprites position and related actions
   void update(double dt) {
     super.update(dt);
+    // make sure the enemy is not dead and is visible
     if (checkInterval('jump', _timeToWaitBeforeJump, dt) &&
         !isDead &&
         isVisible) {
+      // play the jump animation
       animation?.playOnce(
         PlatformSpritesheet.rakshasaActionRight,
+        // flip the sprite horizontally
         flipX: lastDirectionHorizontal == Direction.left,
         onFinish: () async {
           await Future.delayed(const Duration(seconds: 2));
+          // make sure the enemy is not dead
           if (!isDead) {
             jump(jumpSpeed: 260);
+            // sprite moves left or right randomly
             Random().nextBool() ? moveRight() : moveLeft();
           }
         },
       );
     }
   }
+  /*IMPRESSIVE CODE SNIPPET*/
 
   @override
   void onJump(JumpingStateEnum state) {
