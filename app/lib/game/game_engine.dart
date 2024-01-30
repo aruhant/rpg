@@ -5,6 +5,7 @@ import 'flammable_decoration.dart';
 import 'platform_game_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flame_audio/flame_audio.dart';
 
 class GameEngine extends StatefulWidget {
   const GameEngine({Key? key}) : super(key: key);
@@ -17,6 +18,8 @@ class _GameEngineState extends State<GameEngine> {
   Key _gameKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    // FlameAudio.bgm.play('bgm.m4a');
+
     return BonfireWidget(
       key: _gameKey,
       showCollisionArea: false,
