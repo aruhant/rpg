@@ -3,6 +3,9 @@
 
 This game allows the user to play through popular episodes of the Ramayana as one of its many unique characters.
 
+## Playable demo
+[Accessible here](https://aruhant.github.io/rpg/)
+
 ## General Game and Game Mechanics & Physics
 
 Many sub-episodes have fun minigames (obviously based on stories from the Ramayan), each with unique playstyles and objectives. We have tuned game physics and general mechanics to fit our characters and stories. For example, the different sprites are given unique affectations based on their Ramayana descriptions. Our gameplay involves many of the usual adventure-RPG components (like chests, potions, traps, etc.).
