@@ -4,7 +4,7 @@
 This game allows the user to play through popular episodes of the Ramayana as one of its many unique characters.
 
 ## Playable demo
-[Accessible here](https://aruhant.github.io/rpg/)
+[Accessible here](https://aruhant.github.io/rpg-demo/)
 
 ## General Game and Game Mechanics & Physics
 
