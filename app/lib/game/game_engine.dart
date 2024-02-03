@@ -16,6 +16,295 @@ import 'platform_game_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'dart:math';
+import 'dart:ui' as ui;
+
+// This implementation is based on the following chapter of the book "The Nature of Code" by Daniel Shiffman:
+// https://natureofcode.com/autonomous-agents/
+// Also refer to Craig Reynolds' "Boids" algorithm, which simulates the flocking behavior of birds.
+// In the context of the game, the boids are used to simulate the behavior of the enemies.
+// For example, the Rakshasa enemies in the game can use this to simulate their flocking behavior.
+// In general this is a better approach than using a simple pathfinding algorithm which directly calculates the path to the player.
+// This gives a more natural and realistic behavior to the enemies.
+// Also, avoids the enemies from getting stuck in obstacles or against each other.
+
+class Boid {
+  static final Random r = Random();
+  static final Vec migrate = Vec(0.02, 0);
+  static final double size = 3;
+  static final Path shape = Path()
+    ..moveTo(0, -size * 2)
+    ..lineTo(-size, size * 2)
+    ..lineTo(size, size * 2)
+    ..close();
+
+  final double maxForce, maxSpeed;
+
+  Vec location, velocity, acceleration;
+  bool included = true;
+
+  Boid(double x, double y)
+      : acceleration = Vec(0, 0),
+        velocity = Vec(r.nextInt(3) + 1, r.nextInt(3) - 1),
+        location = Vec(x, y),
+        maxSpeed = 3.0,
+        maxForce = 0.05;
+
+  void update() {
+    velocity.add(acceleration);
+    velocity.limit(maxSpeed);
+    location.add(velocity);
+    acceleration.multiply(0);
+  }
+
+  void applyForce(Vec force) {
+    acceleration.add(force);
+  }
+
+  Vec seek(Vec target) {
+    Vec steer = Vec.diff(target, location);
+    steer.normalize();
+    steer.multiply(maxSpeed);
+    steer.substract(velocity);
+    steer.limit(maxForce);
+    return steer;
+  }
+
+  void flock(ui.Canvas canvas, List<Boid> boids) {
+    view(canvas, boids);
+
+    Vec rule1 = separation(boids);
+    Vec rule2 = alignment(boids);
+    Vec rule3 = cohesion(boids);
+
+    rule1.multiply(2.5);
+    rule2.multiply(1.5);
+    rule3.multiply(1.3);
+
+    applyForce(rule1);
+    applyForce(rule2);
+    applyForce(rule3);
+    applyForce(migrate);
+  }
+
+  void view(ui.Canvas canvas, List<Boid> boids) {
+    double sightDistance = 100;
+    double peripheryAngle = pi * 0.85;
+
+    for (Boid b in boids) {
+      b.included = false;
+
+      if (b == this) continue;
+
+      double d = Vec.dist(location, b.location);
+      if (d <= 0 || d > sightDistance) continue;
+
+      Vec lineOfSight = Vec.diff(b.location, location);
+
+      double angle = Vec.angleBetween(lineOfSight, velocity);
+      if (angle < peripheryAngle) b.included = true;
+    }
+  }
+
+  Vec separation(List<Boid> boids) {
+    double desiredSeparation = 25;
+
+    Vec steer = Vec(0, 0);
+    int count = 0;
+    for (Boid b in boids) {
+      if (!b.included) continue;
+
+      double d = Vec.dist(location, b.location);
+      if ((d > 0) && (d < desiredSeparation)) {
+        Vec diff = Vec.diff(location, b.location);
+        diff.normalize();
+        diff.divide(d); // weight by distance
+        steer.add(diff);
+        count++;
+      }
+    }
+    if (count > 0) {
+      steer.divide(count.toDouble());
+    }
+
+    if (steer.magnitude() > 0) {
+      steer.normalize();
+      steer.multiply(maxSpeed);
+      steer.substract(velocity);
+      steer.limit(maxForce);
+      return steer;
+    }
+    return Vec(0, 0);
+  }
+
+  Vec alignment(List<Boid> boids) {
+    double preferredDist = 50;
+
+    Vec steer = Vec(0, 0);
+    int count = 0;
+
+    for (Boid b in boids) {
+      if (!b.included) continue;
+
+      double d = Vec.dist(location, b.location);
+      if ((d > 0) && (d < preferredDist)) {
+        steer.add(b.velocity);
+        count++;
+      }
+    }
+
+    if (count > 0) {
+      steer.divide(count.toDouble());
+      steer.normalize();
+      steer.multiply(maxSpeed);
+      steer.substract(velocity);
+      steer.limit(maxForce);
+    }
+    return steer;
+  }
+
+  Vec cohesion(List<Boid> boids) {
+    double preferredDist = 50;
+
+    Vec target = Vec(0, 0);
+    int count = 0;
+
+    for (Boid b in boids) {
+      if (!b.included) continue;
+
+      double d = Vec.dist(location, b.location);
+      if ((d > 0) && (d < preferredDist)) {
+        target.add(b.location);
+        count++;
+      }
+    }
+    if (count > 0) {
+      target.divide(count.toDouble());
+      return seek(target);
+    }
+    return target;
+  }
+
+  void draw(ui.Canvas canvas) {
+    canvas.save();
+
+    canvas.translate(location.x, location.y);
+    canvas.rotate(velocity.heading() + pi / 2);
+
+    Paint paint = Paint()..color = Colors.white;
+    canvas.drawPath(shape, paint);
+
+    paint = Paint()..color = Colors.black;
+    paint.style = PaintingStyle.stroke;
+    canvas.drawPath(shape, paint);
+
+    canvas.restore();
+  }
+
+  void run(ui.Canvas canvas, List<Boid> boids, int w, int h) {
+    flock(canvas, boids);
+    update();
+    draw(canvas);
+  }
+}
+
+class Flock {
+  List<Boid> boids = [];
+
+  Flock() {
+    boids = [];
+  }
+
+  void run(ui.Canvas canvas, int w, int h) {
+    for (Boid b in boids) {
+      b.run(canvas, boids, w, h);
+    }
+  }
+
+  bool hasLeftTheBuilding(int w) {
+    int count = 0;
+    for (Boid b in boids) {
+      if (b.location.x + Boid.size > w) count++;
+    }
+    return boids.length == count;
+  }
+
+  void addBoid(Boid b) {
+    boids.add(b);
+  }
+
+  static Flock spawn(double w, double h, int numBoids) {
+    Flock flock = Flock();
+    for (int i = 0; i < numBoids; i++) flock.addBoid(Boid(w, h));
+    return flock;
+  }
+}
+
+class Vec {
+  double x = 0, y = 0;
+
+  Vec(this.x, this.y);
+
+  void add(Vec v) {
+    x += v.x;
+    y += v.y;
+  }
+
+  void substract(Vec v) {
+    x -= v.x;
+    y -= v.y;
+  }
+
+  void divide(double val) {
+    x /= val;
+    y /= val;
+  }
+
+  void multiply(double val) {
+    x *= val;
+    y *= val;
+  }
+
+  double magnitude() {
+    return sqrt(pow(x, 2) + pow(y, 2));
+  }
+
+  double dot(Vec v) {
+    return x * v.x + y * v.y;
+  }
+
+  void normalize() {
+    double m = magnitude();
+    if (m != 0) {
+      x /= m;
+      y /= m;
+    }
+  }
+
+  void limit(double lim) {
+    double m = magnitude();
+    if (m != 0 && m > lim) {
+      x *= lim / m;
+      y *= lim / m;
+    }
+  }
+
+  double heading() {
+    return atan2(y, x);
+  }
+
+  static Vec diff(Vec v, Vec v2) {
+    return Vec(v.x - v2.x, v.y - v2.y);
+  }
+
+  static double dist(Vec v, Vec v2) {
+    return sqrt(pow(v.x - v2.x, 2) + pow(v.y - v2.y, 2));
+  }
+
+  static double angleBetween(Vec v, Vec v2) {
+    return acos(v.dot(v2) / (v.magnitude() * v2.magnitude()));
+  }
+}
 
 class GameEngine extends StatefulWidget {
   const GameEngine({Key? key}) : super(key: key);
@@ -55,7 +344,17 @@ class _GameEngineState extends State<GameEngine> {
             JoystickAction(
                 actionId: 'joystickJump',
                 margin: const EdgeInsets.all(70),
-                color: const Color.fromARGB(255, 72, 121, 99))
+                color: const Color.fromARGB(255, 72, 121, 99)),
+            JoystickAction(
+              actionId: 'joystickFire',
+              sprite: Sprite.load('joystick_attack_range.png'),
+              spriteBackgroundDirection: Sprite.load(
+                'joystick_background.png',
+              ),
+              enableDirection: true,
+              size: 50,
+              margin: const EdgeInsets.only(bottom: 50, right: 160),
+            )
           ]),
       components: [PlatformGameController(reset: reset)],
       backgroundColor: Color.fromARGB(255, 41, 140, 185),
