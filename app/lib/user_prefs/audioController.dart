@@ -1,4 +1,5 @@
 import 'package:flame_audio/flame_audio.dart';
+import 'package:ramayan/utils/logging.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AudioController {
@@ -14,6 +15,7 @@ class AudioController {
   }
 
   static savePrefs() async {
+    Log.d("Saving soundOn: $_soundOn, musicOn: $_musicOn");
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool('soundOn', _soundOn);
     prefs.setBool('musicOn', _musicOn);
@@ -39,8 +41,10 @@ class AudioController {
   static playBgm(String bgm) {
     _bgm = bgm + ".m4a";
     if (_musicOn) {
+      Log.d("Playing BGM: $_bgm");
       FlameAudio.bgm.play(_bgm!);
-    }
+    } else
+      Log.d("Music is off, not playing BGM: $_bgm");
   }
 
   static playEffect(String effect) {

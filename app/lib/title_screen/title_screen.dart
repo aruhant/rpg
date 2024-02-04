@@ -56,8 +56,8 @@ class _TitleScreenState extends State<TitleScreen> {
                       onPressed: () => setState(AudioController.toggleMusic),
                       color: Colors.black,
                       icon: Icon(AudioController.musicOn
-                          ? Icons.music_off
-                          : Icons.music_note)),
+                          ? Icons.music_note
+                          : Icons.music_off)),
                   SizedBox(height: 20),
                   IconButton(
                       color: Colors.black,
