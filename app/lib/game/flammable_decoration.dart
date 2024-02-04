@@ -1,4 +1,5 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:ramayan/user_prefs/audioController.dart';
 import 'platform_spritesheet.dart';
 import 'package:flame_audio/flame_audio.dart';
 
@@ -16,7 +17,7 @@ class FlammableDecoration extends GameDecoration with Sensor {
   void onContact(GameComponent component) {
     if (component is Player && !_onFire) {
 // change the animation to burning fire
-      FlameAudio.play('fire.wav');
+      AudioController.playEffect ('fire.wav');
       PlatformSpritesheet.fireOn.then((fire) {
         setAnimation(fire);
         size = Vector2(76 * 3, 116 * 3);

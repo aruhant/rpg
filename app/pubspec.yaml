@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   bonfire:
   flame_audio:
+  video_player:
+  shared_preferences:
 
 dev_dependencies:
   flame_lint:
@@ -47,6 +49,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/audio/
+    - assets/splash/
     - assets/images/
     - assets/images/maps/
 

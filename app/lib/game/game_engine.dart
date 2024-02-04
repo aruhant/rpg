@@ -317,7 +317,6 @@ class _GameEngineState extends State<GameEngine> {
   Key _gameKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    // FlameAudio.bgm.play('bgm.m4a');
     // This is used to build sprites and related actions
     return BonfireWidget(
       key: _gameKey,

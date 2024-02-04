@@ -1,5 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:ramayan/game/fireball_attack.dart';
+import 'package:ramayan/user_prefs/audioController.dart';
 import 'platform_spritesheet.dart';
 import 'package:flutter/services.dart';
 
@@ -33,8 +35,8 @@ class PlayerOne extends PlatformPlayer with HandleForces {
   void onJoystickAction(JoystickActionEvent event) {
     if (event.event == ActionEvent.DOWN &&
         (event.id == LogicalKeyboardKey.space || event.id == 'joystickJump')) {
-      FlameAudio.play('jump.mp3');
-      jump(jumpSpeed: 128 * 3);
+      AudioController.playEffect('jump.mp3');
+      jump(jumpSpeed: 128 * 4);
     }
     super.onJoystickAction(event);
   }
@@ -53,7 +55,7 @@ class PlayerOne extends PlatformPlayer with HandleForces {
 
   @override
   void die() {
-    FlameAudio.play('die.mp3');
+    AudioController.playEffect('die.mp3');
     removeFromParent();
     super.die();
   }

@@ -108,4 +108,20 @@ class PlatformSpritesheet {
           textureSize: Vector2(32, 32),
         ),
       );
+  static Future<SpriteAnimation> get fireBallRight => SpriteAnimation.load(
+        "platform/fireball_right.png",
+        SpriteAnimationData.sequenced(
+          amount: 3,
+          stepTime: 0.1,
+          textureSize: Vector2(23, 46),
+        ),
+      );
+  static Future<SpriteAnimation> get explosionAnimation => SpriteAnimation.load(
+        "platform/explosion_fire.png",
+        SpriteAnimationData.sequenced(
+          amount: 6,
+          stepTime: 0.1,
+          textureSize: Vector2(32, 32),
+        ),
+      );
 }

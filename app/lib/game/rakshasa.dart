@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:bonfire/bonfire.dart';
 import 'package:flame_audio/flame_audio.dart';
+import 'package:ramayan/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'platform_spritesheet.dart';
 
@@ -47,7 +48,7 @@ class Rakshasa extends PlatformEnemy with HandleForces {
 
   @override
   void die() {
-    FlameAudio.play('enemy_die.mp3');
+    AudioController.playEffect('enemy_die.mp3');
     super.die();
     animation?.playOnce(
       PlatformSpritesheet.enemyExplosion,
