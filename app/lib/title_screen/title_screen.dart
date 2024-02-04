@@ -44,22 +44,31 @@ class _TitleScreenState extends State<TitleScreen> {
                           ? Container()
                           : VideoPlayer(_controller!))),
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
+            SafeArea(
+              minimum: const EdgeInsets.all(18.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   IconButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white70)),
                       onPressed: () => setState(AudioController.toggleMusic),
+                      color: Colors.black,
                       icon: Icon(AudioController.musicOn
                           ? Icons.music_off
                           : Icons.music_note)),
+                  SizedBox(height: 20),
                   IconButton(
+                      color: Colors.black,
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white70)),
                       onPressed: () => setState(AudioController.toggleSound),
                       icon: Icon(AudioController.soundOn
                           ? Icons.volume_up
                           : Icons.volume_off)),
+                  Spacer(),
                   ElevatedButton(
                       onPressed: () => Navigator.push(context,
                           MaterialPageRoute(builder: (context) => widget.game)),

@@ -37,7 +37,7 @@ class AudioController {
   }
 
   static playBgm(String bgm) {
-    _bgm = bgm;
+    _bgm = bgm + ".m4a";
     if (_musicOn) {
       FlameAudio.bgm.play(_bgm!);
     }

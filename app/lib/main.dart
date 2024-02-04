@@ -26,7 +26,7 @@ class RamayanRPGApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: TitleScreen(
-          game: GameEngine(),
+          game: GameEngine(level: 'lanka_dahan'),
         ));
   }
 }

@@ -9,6 +9,7 @@ screen to create the game world and the game engine.
 */
 /*MOVED IMPRESSIVE CODE SNIPPET to rakshasa.dart*/
 import 'package:bonfire/bonfire.dart';
+import 'package:ramayan/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'rakshasa.dart';
 import 'flammable_decoration.dart';
@@ -307,13 +308,19 @@ class Vec {
 }
 
 class GameEngine extends StatefulWidget {
-  const GameEngine({Key? key}) : super(key: key);
-
+  const GameEngine({Key? key, required this.level}) : super(key: key);
+  final String level;
   @override
   State<GameEngine> createState() => _GameEngineState();
 }
 
 class _GameEngineState extends State<GameEngine> {
+  @override
+  void initState() {
+    super.initState();
+    AudioController.playBgm(widget.level);
+  }
+
   Key _gameKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -323,7 +330,7 @@ class _GameEngineState extends State<GameEngine> {
       showCollisionArea: false,
       map: WorldMapByTiled(
         TiledReader.asset(
-          'maps/lanka_map.tmj',
+          'maps/${widget.level}_map.tmj',
         ),
         objectsBuilder: {
           'rakshasa': (properties) => Rakshasa(position: properties.position),
