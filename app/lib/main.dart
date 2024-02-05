@@ -1,9 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ramayana/level_picker/world_selector.dart';
 import 'package:ramayana/title_screen/title_screen.dart';
-import 'game/game_engine.dart';
 import 'user_prefs/audioController.dart';
 
 void main() async {
@@ -24,11 +22,7 @@ class RamayanRPGApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
-        // home: WorldMapWidget(
-        //   game: GameEngine(level: 'lanka_dahan'),
-        // ));
-        home: TitleScreen(
-          game: GameEngine(level: 'lanka_dahan'),
-        ));
+        //   GameEngine(level: 'lanka_dahan'));
+        home: TitleScreen());
   }
 }

@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
-import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/level_picker/level_slector.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 
 class WorldMapWidget extends StatefulWidget {
-  // Reference to parent game.
-  final GameEngine game;
-
-  const WorldMapWidget({super.key, required this.game});
+  const WorldMapWidget({super.key});
 
   @override
   State<WorldMapWidget> createState() => _WorldMapWidgetState();
@@ -52,7 +47,7 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
                     onSlelect: () => setState(() {
                           selectedWorld = e;
                         })))
-                .toList(),
+                ,
             if (selectedWorld != null)
               Positioned(
                   left: selectedWorld!.x - 100,
@@ -88,11 +83,11 @@ class WorldTile extends StatelessWidget {
               onSlelect();
             }
           },
+          color: world.isAvailable ? Colors.red : Colors.red.withOpacity(0.5),
           child: Text(world.name ?? '',
               style: TextStyle(
                   fontSize: 16,
                   color: world.isAvailable ? Colors.black : Colors.black45)),
-          color: world.isAvailable ? Colors.red : Colors.red.withOpacity(0.5),
         ));
   }
 }
@@ -120,7 +115,7 @@ class LevelInfo {
         x = (json['x'] ?? 300).toDouble(),
         y = (json['y'] ?? 300).toDouble(),
         isAvailable = json['isAvailable'] ?? false,
-        levels = (json['levels'] ?? [] as List<dynamic>)
+        levels = (json['levels'] ?? [])
             .map<LevelInfo>((e) => LevelInfo.fromJson(e))
             .toList(),
         info = json['info'];
@@ -141,7 +136,7 @@ class LevelInfoDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Close'),
+          child: const Text('Close'),
         )
       ],
     );

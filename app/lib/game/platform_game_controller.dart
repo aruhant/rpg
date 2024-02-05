@@ -1,4 +1,5 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:ramayana/title_screen/title_screen.dart';
 import 'player_one.dart';
 import 'flammable_decoration.dart';
 import 'package:flutter/material.dart';
@@ -34,9 +35,10 @@ class PlatformGameController extends GameComponent {
                 },
                 child: const Text('Play Again'),
               ),
-              const TextButton(
-                onPressed: null,
-                child: Text('Next Level'),
+              TextButton(
+                onPressed: () => Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const TitleScreen())),
+                child: const Text('Next Level'),
               ),
             ],
           );

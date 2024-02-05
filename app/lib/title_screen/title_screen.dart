@@ -5,10 +5,7 @@ import 'package:ramayana/user_prefs/audioController.dart';
 import 'package:video_player/video_player.dart';
 
 class TitleScreen extends StatefulWidget {
-  // Reference to parent game.
-  final GameEngine game;
-
-  const TitleScreen({super.key, required this.game});
+  const TitleScreen({super.key});
 
   @override
   State<TitleScreen> createState() => _TitleScreenState();
@@ -72,14 +69,15 @@ class _TitleScreenState extends State<TitleScreen> {
                       onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => WorldMapWidget(
-                                    game: widget.game,
-                                  ))),
+                              builder: (context) => const WorldMapWidget())),
                       child: const Text('Select Level')),
                   const SizedBox(height: 18),
                   ElevatedButton(
-                      onPressed: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => widget.game)),
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const GameEngine(level: 'lanka_dahan'))),
                       child: const Text('Start Game')),
                 ],
               ),
