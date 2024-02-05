@@ -1,15 +1,12 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:flame_audio/flame_audio.dart';
-import 'package:ramayana/game/fireball_attack.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
 import 'platform_spritesheet.dart';
 import 'package:flutter/services.dart';
 
 class PlayerOne extends PlatformPlayer with HandleForces {
   bool inTrunk = false;
-  PlayerOne({required Vector2 position})
+  PlayerOne({required super.position})
       : super(
-          position: position,
           size: Vector2.all(2 * 128),
           speed: 128 * 4,
           animation: PlatformAnimations(

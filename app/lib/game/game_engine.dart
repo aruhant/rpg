@@ -9,14 +9,13 @@ screen to create the game world and the game engine.
 */
 /*MOVED IMPRESSIVE CODE SNIPPET to rakshasa.dart*/
 import 'package:bonfire/bonfire.dart';
-import 'package:ramayan/user_prefs/audioController.dart';
+import 'package:ramayana/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'rakshasa.dart';
 import 'flammable_decoration.dart';
 import 'platform_game_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'dart:math';
 import 'dart:ui' as ui;
 
@@ -32,7 +31,7 @@ import 'dart:ui' as ui;
 class Boid {
   static final Random r = Random();
   static final Vec migrate = Vec(0.02, 0);
-  static final double size = 3;
+  static const double size = 3;
   static final Path shape = Path()
     ..moveTo(0, -size * 2)
     ..lineTo(-size, size * 2)
@@ -236,7 +235,9 @@ class Flock {
 
   static Flock spawn(double w, double h, int numBoids) {
     Flock flock = Flock();
-    for (int i = 0; i < numBoids; i++) flock.addBoid(Boid(w, h));
+    for (int i = 0; i < numBoids; i++) {
+      flock.addBoid(Boid(w, h));
+    }
     return flock;
   }
 }
@@ -308,7 +309,7 @@ class Vec {
 }
 
 class GameEngine extends StatefulWidget {
-  const GameEngine({Key? key, required this.level}) : super(key: key);
+  const GameEngine({super.key, required this.level});
   final String level;
   @override
   State<GameEngine> createState() => _GameEngineState();
@@ -344,7 +345,7 @@ class _GameEngineState extends State<GameEngine> {
             LogicalKeyboardKey.space,
           ]),
           directional: JoystickDirectional(
-            color: Color.fromARGB(255, 13, 116, 68),
+            color: const Color.fromARGB(255, 13, 116, 68),
           ),
           actions: [
             JoystickAction(
@@ -363,7 +364,7 @@ class _GameEngineState extends State<GameEngine> {
             )
           ]),
       components: [PlatformGameController(reset: reset)],
-      backgroundColor: Color.fromARGB(255, 41, 140, 185),
+      backgroundColor: const Color.fromARGB(255, 41, 140, 185),
       globalForces: [GravityForce2D()],
       cameraConfig: CameraConfig(
         moveOnlyMapArea: true,

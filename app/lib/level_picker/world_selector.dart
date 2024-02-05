@@ -8,7 +8,6 @@
 // The WorldSelector class has a reference to the parent game, which is used to start the game with the selected world and level.
 
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/level_picker/level_slector.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -18,7 +17,7 @@ class WorldSelector extends StatefulWidget {
   // Reference to parent game.
   final GameEngine game;
 
-  const WorldSelector({Key? key, required this.game}) : super(key: key);
+  const WorldSelector({super.key, required this.game});
 
   @override
   State<WorldSelector> createState() => _WorldSelectorState();
@@ -61,7 +60,7 @@ class _WorldSelectorState extends State<WorldSelector> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LevelSelector(),
+                    builder: (context) => const LevelSelector(),
                   ),
                 );
               },
@@ -79,7 +78,7 @@ class _WorldSelectorState extends State<WorldSelector> {
 class WorldTile extends StatelessWidget {
   final LevelInfo world;
 
-  const WorldTile({Key? key, required this.world}) : super(key: key);
+  const WorldTile({super.key, required this.world});
 
   @override
   Widget build(BuildContext context) {

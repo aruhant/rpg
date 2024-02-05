@@ -1,15 +1,13 @@
 import 'dart:math';
 import 'package:bonfire/bonfire.dart';
-import 'package:flame_audio/flame_audio.dart';
-import 'package:ramayan/user_prefs/audioController.dart';
+import 'package:ramayana/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'platform_spritesheet.dart';
 
 class Rakshasa extends PlatformEnemy with HandleForces {
   int _timeToWaitBeforeJump = 4000;
-  Rakshasa({required Vector2 position})
+  Rakshasa({required super.position})
       : super(
-          position: position,
           size: Vector2(471 * .7, 480 * .7),
           speed: 150,
           animation: PlatformAnimations(

@@ -34,9 +34,9 @@ class PlatformGameController extends GameComponent {
                 },
                 child: const Text('Play Again'),
               ),
-              TextButton(
+              const TextButton(
                 onPressed: null,
-                child: const Text('Next Level'),
+                child: Text('Next Level'),
               ),
             ],
           );

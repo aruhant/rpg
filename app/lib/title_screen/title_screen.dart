@@ -1,8 +1,7 @@
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:ramayan/game/game_engine.dart';
-import 'package:ramayan/game/platform_game_controller.dart';
-import 'package:ramayan/user_prefs/audioController.dart';
+import 'package:ramayana/game/game_engine.dart';
+import 'package:ramayana/level_picker/world_selector.dart';
+import 'package:ramayana/user_prefs/audioController.dart';
 import 'package:video_player/video_player.dart';
 
 class TitleScreen extends StatefulWidget {
@@ -58,7 +57,7 @@ class _TitleScreenState extends State<TitleScreen> {
                       icon: Icon(AudioController.musicOn
                           ? Icons.music_note
                           : Icons.music_off)),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   IconButton(
                       color: Colors.black,
                       style: ButtonStyle(
@@ -68,7 +67,16 @@ class _TitleScreenState extends State<TitleScreen> {
                       icon: Icon(AudioController.soundOn
                           ? Icons.volume_up
                           : Icons.volume_off)),
-                  Spacer(),
+                  const Spacer(),
+                  ElevatedButton(
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => WorldSelector(
+                                    game: widget.game,
+                                  ))),
+                      child: const Text('Select Level')),
+                  const SizedBox(height: 18),
                   ElevatedButton(
                       onPressed: () => Navigator.push(context,
                           MaterialPageRoute(builder: (context) => widget.game)),
