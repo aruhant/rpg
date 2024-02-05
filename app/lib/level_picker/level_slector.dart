@@ -9,8 +9,11 @@ class LevelSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black87,
-      width: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+      ),
+      clipBehavior: Clip.antiAlias,
+      width: 300,
       child: ListView(
         shrinkWrap: true,
         children: world.levels!.map((e) => LevelTile(level: e)).toList(),
@@ -29,7 +32,7 @@ class LevelTile extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
       ),
-      color: level.isAvailable ? Colors.orange : Colors.white54,
+      color: level.isAvailable ? Colors.orange : Colors.white60,
       onPressed: () {
         if (level.isAvailable) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -39,7 +42,7 @@ class LevelTile extends StatelessWidget {
       },
       child: Text(level.name!,
           style: TextStyle(
-              color: level.isAvailable ? Colors.white : Colors.black45)),
+              color: level.isAvailable ? Colors.black : Colors.black38)),
     );
   }
 }
