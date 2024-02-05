@@ -31,10 +31,10 @@ dependencies:
   flutter:
     sdk: flutter
   bonfire: ^3.3.0
-  flame_audio:
-  video_player:
-  shared_preferences:
-  logger:
+  flame_audio: ^2.1.7
+  video_player: ^2.8.2
+  shared_preferences: ^2.2.2
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flame_lint:

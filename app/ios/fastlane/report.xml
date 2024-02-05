@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="00: default_platform" time="0.000893">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="01: Switch to ios certificates lane" time="0.000343">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="02: match" time="9.805364">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="03: register_devices" time="2.527228">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="04: app_store_connect_api_key" time="0.005767">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="05: changelog_from_git_commits" time="0.044711">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="06: number_of_commits" time="0.071556">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="07: flutter clean" time="10.274945">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="08: flutter pub get" time="7.790154">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="09: pod install --repo-update" time="2.812066">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="10: match" time="3.726849">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="11: gym" time="164.826627">
+        
+          <failure message="/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/actions/actions_helper.rb:67:in `execute_action'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/runner.rb:255:in `block in execute_action'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/runner.rb:229:in `chdir'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/runner.rb:229:in `execute_action'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/runner.rb:157:in `trigger_action_by_name'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/fast_file.rb:159:in `method_missing'&#10;Fastfile:83:in `block (2 levels) in parsing_binding'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/lane.rb:41:in `call'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/lane_manager.rb:46:in `cruise_lane'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/command_line_handler.rb:34:in `handle'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/commands_generator.rb:110:in `block (2 levels) in run'&#10;/Users/amit/.gem/gems/commander-4.6.0/lib/commander/command.rb:187:in `call'&#10;/Users/amit/.gem/gems/commander-4.6.0/lib/commander/command.rb:157:in `run'&#10;/Users/amit/.gem/gems/commander-4.6.0/lib/commander/runner.rb:444:in `run_active_command'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:124:in `run!'&#10;/Users/amit/.gem/gems/commander-4.6.0/lib/commander/delegates.rb:18:in `run!'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/commands_generator.rb:354:in `run'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/commands_generator.rb:43:in `start'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/fastlane/lib/fastlane/cli_tools_distributor.rb:123:in `take_off'&#10;/Users/amit/.gem/gems/fastlane-2.219.0/bin/fastlane:23:in `&lt;top (required)&gt;'&#10;/Users/amit/.gem/bin/fastlane:25:in `load'&#10;/Users/amit/.gem/bin/fastlane:25:in `&lt;main&gt;'&#10;&#10;Error building the application - see the log above" />
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
