@@ -1,29 +1,21 @@
-// The game consists of worlds, with multiple levels within each.
-// The player can select a world and then a level to play.
-// The world and level information is loaded from a JSON file.
-
-// The WorldSelector class is a StatefulWidget that displays the list of worlds and levels.
-// It also allows the player to select a world and level to play.
-
-// The WorldSelector class has a reference to the parent game, which is used to start the game with the selected world and level.
-
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/level_picker/level_slector.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 
-class WorldSelector extends StatefulWidget {
+class WorldMapWidget extends StatefulWidget {
   // Reference to parent game.
   final GameEngine game;
 
-  const WorldSelector({super.key, required this.game});
+  const WorldMapWidget({super.key, required this.game});
 
   @override
-  State<WorldSelector> createState() => _WorldSelectorState();
+  State<WorldMapWidget> createState() => _WorldMapWidgetState();
 }
 
-class _WorldSelectorState extends State<WorldSelector> {
+class _WorldMapWidgetState extends State<WorldMapWidget> {
   // List of worlds and levels.
   List<LevelInfo> worlds = [];
 
@@ -35,7 +27,8 @@ class _WorldSelectorState extends State<WorldSelector> {
 
   // Load world and level information from a JSON file.
   Future<void> loadWorlds() async {
-    final String jsonString = await rootBundle.loadString('assets/levels.json');
+    final String jsonString =
+        await rootBundle.loadString('assets/worlds/world_map.json');
     // worlds = jsonDecode(jsonString).map((e) => LevelInfo.fromJson(e)).toList();
     worlds = (jsonDecode(jsonString)['worlds'] as List)
         .map((e) => LevelInfo.fromJson(e))
@@ -47,79 +40,101 @@ class _WorldSelectorState extends State<WorldSelector> {
   Widget build(BuildContext context) {
     return Material(
       child: SafeArea(
-        minimum: const EdgeInsets.all(18.0),
-        child: GridView.count(
-          crossAxisCount: 3,
-          padding: const EdgeInsets.all(4.0),
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
-          children: List.generate(worlds.length, (index) {
-            return InkWell(
-              onTap: () {
-                // When a world is selected, navigate to the LevelSelector screen.
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LevelSelector(),
-                  ),
-                );
-              },
-              child: WorldTile(
-                world: worlds[index],
-              ),
-            );
-          }),
-        ),
+        // minimum: const EdgeInsets.all(18.0),
+        child: SingleChildScrollView(
+            child: Stack(
+          children: [
+            Image.asset('assets/worlds/world_map.png'),
+            ...worlds.map((e) => WorldTile(world: e)).toList(),
+          ],
+        )),
       ),
     );
   }
 }
 
-class WorldTile extends StatelessWidget {
+class WorldTile extends StatefulWidget {
   final LevelInfo world;
 
   const WorldTile({super.key, required this.world});
 
   @override
+  State<WorldTile> createState() => _WorldTileState();
+}
+
+class _WorldTileState extends State<WorldTile> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: (world.image != null)
-            ? DecorationImage(
-                image: AssetImage(world.image!),
-                fit: BoxFit.cover,
-              )
-            : null,
-      ),
-      child: Center(
-        child: Text(
-          world.name ?? '',
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 24,
+    return Positioned(
+        left: widget.world.x,
+        top: widget.world.y,
+        child: MaterialButton(
+          elevation: 5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(3.0),
           ),
-        ),
-      ),
-    );
+          onPressed: () {
+            if (!widget.world.isAvailable) {
+              showDialog(
+                  context: context,
+                  builder: (context) => LevelInfoDialog(info: widget.world));
+            }
+          },
+          child: Text(widget.world.name ?? '',
+              style: TextStyle(
+                  fontSize: 16,
+                  color: widget.world.isAvailable
+                      ? Colors.black
+                      : Colors.black45)),
+          color: widget.world.isAvailable
+              ? Colors.red
+              : Colors.red.withOpacity(0.5),
+        ));
   }
 }
 
 class LevelInfo {
   final String? name;
   final String? map;
-  final String? image;
-  final List<LevelInfo>? levels;
-  final String? info;
+  final double x, y;
+  final bool isAvailable;
 
-  LevelInfo({this.name, this.map, this.image, this.levels, this.info});
+  final String? info;
+  LevelInfo({
+    this.name,
+    this.map,
+    this.x = 0,
+    this.y = 0,
+    this.isAvailable = false,
+    this.info,
+  });
   LevelInfo.fromJson(Map<String, dynamic> json)
       : name = json['name'],
         map = json['map'],
-        image = json['image'],
-        levels = json['levels'] != null
-            ? (json['levels'] as List)
-                .map((i) => LevelInfo.fromJson(i))
-                .toList()
-            : null,
+        x = (json['x'] ?? 300).toDouble(),
+        y = (json['y'] ?? 300).toDouble(),
+        isAvailable = json['isAvailable'] ?? false,
         info = json['info'];
+}
+
+class LevelInfoDialog extends StatelessWidget {
+  final LevelInfo info;
+
+  const LevelInfoDialog({super.key, required this.info});
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(info.name ?? ''),
+      content: Text(info.info ?? 'Coming Soon!'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Close'),
+        )
+      ],
+    );
+  }
 }

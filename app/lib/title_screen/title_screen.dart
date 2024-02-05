@@ -72,7 +72,7 @@ class _TitleScreenState extends State<TitleScreen> {
                       onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => WorldSelector(
+                              builder: (context) => WorldMapWidget(
                                     game: widget.game,
                                   ))),
                       child: const Text('Select Level')),
