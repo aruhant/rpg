@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.aruhant" "\0"
-            VALUE "FileDescription", "ramayan" "\0"
+            VALUE "FileDescription", "ramayana" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "ramayan" "\0"
+            VALUE "InternalName", "ramayana" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.aruhant. All rights reserved." "\0"
-            VALUE "OriginalFilename", "ramayan.exe" "\0"
-            VALUE "ProductName", "ramayan" "\0"
+            VALUE "OriginalFilename", "ramayana.exe" "\0"
+            VALUE "ProductName", "ramayana" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

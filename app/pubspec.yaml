@@ -1,5 +1,5 @@
-name: ramayan
-description: "A new Flutter project."
+name: ramayana
+description: "A Game based on Ramayana."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  bonfire:
+  bonfire: ^3.3.0
   flame_audio:
   video_player:
   shared_preferences:
@@ -44,7 +44,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
@@ -53,25 +53,29 @@ flutter:
     - assets/splash/
     - assets/images/
     - assets/images/maps/
-
+    - assets/worlds/
+    - assets/
     - assets/images/platform/
     - assets/images/platform/hanuman/
     - assets/images/platform/rakshasa/
 flutter_launcher_icons:
   android: true
-  image_path_android: "../graphics/appicon.png"
   ios: true
-  image_path: "../graphics/appicon.png"
+  image_path_android: "../graphics/icon_ios.png"
+  image_path_ios: "../graphics/icon_ios.png"
+  adaptive_icon_background: "../graphics/background.png"
+  adaptive_icon_foreground: "../graphics/foreground.png"
+  remove_alpha_ios: true
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
-    image_path: "../graphics/appicon.png"
+    image_path: "../graphics/icon_ios.png"
     background_color: "#FFFFFF"
     theme_color: "#FFFFFF"
   windows:
     generate: true
-    image_path: "../graphics/appicon.png"
+    image_path: "../graphics/icon_ios.png"
     icon_size: 48 # min:48, max:256, default: 48
   macos:
     generate: true
-    image_path: "../graphics/appicon.png"
+    image_path: "../graphics/icon_ios.png"

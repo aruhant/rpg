@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flame_audio/flame_audio.dart';
-import 'package:ramayan/game/fireball_attack.dart';
-import 'package:ramayan/user_prefs/audioController.dart';
+import 'package:ramayana/game/fireball_attack.dart';
+import 'package:ramayana/user_prefs/audioController.dart';
 import 'platform_spritesheet.dart';
 import 'package:flutter/services.dart';
 
