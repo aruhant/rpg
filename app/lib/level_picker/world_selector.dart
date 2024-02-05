@@ -18,6 +18,7 @@ class WorldMapWidget extends StatefulWidget {
 class _WorldMapWidgetState extends State<WorldMapWidget> {
   // List of worlds and levels.
   List<LevelInfo> worlds = [];
+  LevelInfo? selectedWorld;
 
   @override
   void initState() {
@@ -45,7 +46,18 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
             child: Stack(
           children: [
             Image.asset('assets/worlds/world_map.png'),
-            ...worlds.map((e) => WorldTile(world: e)).toList(),
+            ...worlds
+                .map((e) => WorldTile(
+                    world: e,
+                    onSlelect: () => setState(() {
+                          selectedWorld = e;
+                        })))
+                .toList(),
+            if (selectedWorld != null)
+              Positioned(
+                  left: selectedWorld!.x - 100,
+                  top: selectedWorld!.y - 100,
+                  child: LevelSelector(world: selectedWorld!)),
           ],
         )),
       ),
@@ -53,42 +65,34 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
   }
 }
 
-class WorldTile extends StatefulWidget {
+class WorldTile extends StatelessWidget {
   final LevelInfo world;
-
-  const WorldTile({super.key, required this.world});
-
-  @override
-  State<WorldTile> createState() => _WorldTileState();
-}
-
-class _WorldTileState extends State<WorldTile> {
+  final VoidCallback onSlelect;
+  const WorldTile({super.key, required this.world, required this.onSlelect});
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        left: widget.world.x,
-        top: widget.world.y,
+        left: world.x,
+        top: world.y,
         child: MaterialButton(
           elevation: 5,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3.0),
           ),
           onPressed: () {
-            if (!widget.world.isAvailable) {
+            if (!world.isAvailable) {
               showDialog(
                   context: context,
-                  builder: (context) => LevelInfoDialog(info: widget.world));
+                  builder: (context) => LevelInfoDialog(world: world));
+            } else {
+              onSlelect();
             }
           },
-          child: Text(widget.world.name ?? '',
+          child: Text(world.name ?? '',
               style: TextStyle(
                   fontSize: 16,
-                  color: widget.world.isAvailable
-                      ? Colors.black
-                      : Colors.black45)),
-          color: widget.world.isAvailable
-              ? Colors.red
-              : Colors.red.withOpacity(0.5),
+                  color: world.isAvailable ? Colors.black : Colors.black45)),
+          color: world.isAvailable ? Colors.red : Colors.red.withOpacity(0.5),
         ));
   }
 }
@@ -98,6 +102,7 @@ class LevelInfo {
   final String? map;
   final double x, y;
   final bool isAvailable;
+  final List<LevelInfo>? levels;
 
   final String? info;
   LevelInfo({
@@ -106,6 +111,7 @@ class LevelInfo {
     this.x = 0,
     this.y = 0,
     this.isAvailable = false,
+    this.levels,
     this.info,
   });
   LevelInfo.fromJson(Map<String, dynamic> json)
@@ -114,19 +120,22 @@ class LevelInfo {
         x = (json['x'] ?? 300).toDouble(),
         y = (json['y'] ?? 300).toDouble(),
         isAvailable = json['isAvailable'] ?? false,
+        levels = (json['levels'] ?? [] as List<dynamic>)
+            .map<LevelInfo>((e) => LevelInfo.fromJson(e))
+            .toList(),
         info = json['info'];
 }
 
 class LevelInfoDialog extends StatelessWidget {
-  final LevelInfo info;
+  final LevelInfo world;
 
-  const LevelInfoDialog({super.key, required this.info});
+  const LevelInfoDialog({super.key, required this.world});
 
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(info.name ?? ''),
-      content: Text(info.info ?? 'Coming Soon!'),
+      title: Text(world.name ?? ''),
+      content: Text(world.info ?? 'Coming Soon!'),
       actions: [
         TextButton(
           onPressed: () {

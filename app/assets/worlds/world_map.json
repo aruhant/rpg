@@ -9,15 +9,15 @@
             "levels": [
                 {
                     "name": "The Birth of Rama",
-                    "file": "levels/bala_kanda/level_1.json"
+                    "map": "levels/bala_kanda/level_1.json"
                 },
                 {
                     "name": "Vishwamitra's Aid",
-                    "file": "levels/bala_kanda/level_2.json"
+                    "map": "levels/bala_kanda/level_2.json"
                 },
                 {
                     "name": "The Marriage of Rama",
-                    "file": "levels/bala_kanda/level_3.json"
+                    "map": "levels/bala_kanda/level_3.json"
                 }
             ]
         },
@@ -28,15 +28,15 @@
             "levels": [
                 {
                     "name": "Rama's Exile",
-                    "file": "levels/ayodhya_kanda/level_1.json"
+                    "map": "levels/ayodhya_kanda/level_1.json"
                 },
                 {
                     "name": "Bharata's Return",
-                    "file": "levels/ayodhya_kanda/level_2.json"
+                    "map": "levels/ayodhya_kanda/level_2.json"
                 },
                 {
                     "name": "The Death of Dasaratha",
-                    "file": "levels/ayodhya_kanda/level_3.json"
+                    "map": "levels/ayodhya_kanda/level_3.json"
                 }
             ]
         },
@@ -47,15 +47,15 @@
             "levels": [
                 {
                     "name": "The Kidnapping of Sita",
-                    "file": "levels/aranya_kanda/level_1.json"
+                    "map": "levels/aranya_kanda/level_1.json"
                 },
                 {
                     "name": "The Search for Sita",
-                    "file": "levels/aranya_kanda/level_2.json"
+                    "map": "levels/aranya_kanda/level_2.json"
                 },
                 {
                     "name": "The Meeting with Hanuman",
-                    "file": "levels/aranya_kanda/level_3.json"
+                    "map": "levels/aranya_kanda/level_3.json"
                 }
             ]
         },
@@ -66,15 +66,15 @@
             "levels": [
                 {
                     "name": "The Meeting with Sugriva",
-                    "file": "levels/kishkindha_kanda/level_1.json"
+                    "map": "levels/kishkindha_kanda/level_1.json"
                 },
                 {
                     "name": "The alliance with Sugriva",
-                    "file": "levels/kishkindha_kanda/level_2.json"
+                    "map": "levels/kishkindha_kanda/level_2.json"
                 },
                 {
                     "name": "The Search for Sita",
-                    "file": "levels/kishkindha_kanda/level_3.json"
+                    "map": "levels/kishkindha_kanda/level_3.json"
                 }
             ]
         },
@@ -85,16 +85,17 @@
             "isAvailable": true,
             "levels": [
                 {
-                    "name": "The Leap to Lanka",
-                    "file": "levels/sundara_kanda/level_1.json"
+                    "name": "The Leap to Lanka (Coming Soon)",
+                    "map": "levels/sundara_kanda/level_1.json"
                 },
                 {
-                    "name": "The meeting with Sita",
-                    "file": "levels/sundara_kanda/level_2.json"
+                    "name": "The meeting with Sita (Coming Soon)",
+                    "map": "levels/sundara_kanda/level_2.json"
                 },
                 {
                     "name": "Lanka in Flames",
-                    "file": "levels/sundara_kanda/level_3.json"
+                    "isAvailable": true,
+                    "map": "lanka_dahan"
                 }
             ]
         },
@@ -105,15 +106,15 @@
             "levels": [
                 {
                     "name": "The Battle Begins",
-                    "file": "levels/yuddha_kanda/level_1.json"
+                    "map": "levels/yuddha_kanda/level_1.json"
                 },
                 {
                     "name": "The Death of Ravana",
-                    "file": "levels/yuddha_kanda/level_2.json"
+                    "map": "levels/yuddha_kanda/level_2.json"
                 },
                 {
                     "name": "The Return to Ayodhya",
-                    "file": "levels/yuddha_kanda/level_3.json"
+                    "map": "levels/yuddha_kanda/level_3.json"
                 }
             ]
         }
