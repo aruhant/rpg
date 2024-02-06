@@ -330,9 +330,8 @@ class _GameEngineState extends State<GameEngine> {
       key: _gameKey,
       showCollisionArea: false,
       map: WorldMapByTiled(
-        TiledReader.asset(
-          'maps/${widget.level}_map.tmj',
-        ),
+        TiledReader.asset('maps/${widget.level}_map.tmj'),
+        forceTileSize: Vector2(128 * 1.5, 128 * 1.5),
         objectsBuilder: {
           'rakshasa': (properties) => Rakshasa(position: properties.position),
           'fire': (properties) =>
@@ -369,7 +368,7 @@ class _GameEngineState extends State<GameEngine> {
       cameraConfig: CameraConfig(
         moveOnlyMapArea: true,
         zoom: getZoomFromMaxVisibleTile(context, 12, 128),
-        speed: 1,
+        speed: 2,
       ),
       // This is used to build the player and their position
       player: PlayerOne(position: Vector2(128 * 5, 128 * 12)),
