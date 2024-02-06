@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/level_picker/world_selector.dart';
 import 'package:ramayana/title_screen/language_picker.dart';
+import 'package:ramayana/title_screen/level_intro.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
 import 'package:video_player/video_player.dart';
 
@@ -82,7 +83,8 @@ class _TitleScreenState extends State<TitleScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const GameEngine(level: 'lanka_dahan'))),
+                                  LevelIntro(level: 'lanka_dahan'))),
+                      // const GameEngine(level: 'lanka_dahan'))),
                       child: Text('start_game'.tr())),
                 ],
               ),

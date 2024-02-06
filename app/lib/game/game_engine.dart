@@ -1,13 +1,3 @@
-/*
-This file is responsible for creating the game engine and setting up the game.
-It uses the Bonfire library to create the game engine and the game world.
-It also sets up the player and the enemies in the game. It also sets up the
-joystick and the camera for the game. It also sets up the background music for
-the game. It also sets up the reset function for the game. The reset function is 
-hsed to reset the game when the player dies. The game engine is used in the game
-screen to create the game world and the game engine. 
-*/
-/*MOVED IMPRESSIVE CODE SNIPPET to rakshasa.dart*/
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
@@ -20,15 +10,26 @@ import 'package:flutter/services.dart';
 import 'dart:math';
 import 'dart:ui' as ui;
 
-// This implementation is based on the following chapter of the book "The Nature of Code" by Daniel Shiffman:
-// https://natureofcode.com/autonomous-agents/
-// Also refer to Craig Reynolds' "Boids" algorithm, which simulates the flocking behavior of birds.
-// In the context of the game, the boids are used to simulate the behavior of the enemies.
-// For example, the Rakshasa enemies in the game can use this to simulate their flocking behavior.
-// In general this is a better approach than using a simple pathfinding algorithm which directly calculates the path to the player.
-// This gives a more natural and realistic behavior to the enemies.
-// Also, avoids the enemies from getting stuck in obstacles or against each other.
+/*
+This file is responsible for creating the game engine and setting up the game.
+It uses the Bonfire library to create the game engine and the game world.
+It also sets up the player and the enemies in the game. It also sets up the
+joystick and the camera for the game. It also sets up the background music for
+the game. It also sets up the reset function for the game. The reset function is 
+hsed to reset the game when the player dies. The game engine is used in the game
+screen to create the game world and the game engine. 
 
+I think, the boids algorithm below is pretty cool. 
+
+This implementation is based on the following chapter of the book "The Nature of Code" by Daniel Shiffman:
+ https://natureofcode.com/autonomous-agents/
+ Also refer to Craig Reynolds' "Boids" algorithm, which simulates the flocking behavior of birds.
+ In the context of the game, the boids are used to simulate the behavior of the enemies.
+ For example, the Rakshasa enemies in the game can use this to simulate their flocking behavior.
+ In general this is a better approach than using a simple pathfinding algorithm which directly calculates the path to the player.
+ This gives a more natural and realistic behavior to the enemies.
+ Also, avoids the enemies from getting stuck in obstacles or against each other.
+*/
 class Boid {
   static final Random r = Random();
   static final Vec migrate = Vec(0.02, 0);

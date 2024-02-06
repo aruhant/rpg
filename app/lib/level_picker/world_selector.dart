@@ -44,7 +44,7 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
     double scale = side / 1000;
     print(scale);
     return Material(
-      color: Colors.red,
+      color: Colors.black,
       child: SingleChildScrollView(
         child: Container(
           width: side,
@@ -59,19 +59,6 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              // Container(
-              //   width: side,
-              //   height: side,
-              //   decoration: BoxDecoration(
-              //     color: Colors.green.withOpacity(0.3),
-              //     image: DecorationImage(
-              //       image: AssetImage('assets/worlds/world_map.png'),
-              //       opacity: 0.3,
-              //       fit: BoxFit.cover,
-              //       alignment: Alignment.topLeft,
-              //     ),
-              //   ),
-              // ),
               ...worlds.map((e) => WorldTile(
                   world: e,
                   scale: scale,
