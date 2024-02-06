@@ -3,6 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ramayana/title_screen/title_screen.dart';
 import 'user_prefs/audioController.dart';
+import 'game/game_engine.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,8 +14,13 @@ void main() async {
     await Flame.device.setLandscape();
     await Flame.device.fullScreen();
   }
+  await EasyLocalization.ensureInitialized();
 
-  runApp(const RamayanRPGApp());
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('de', 'DE')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      child: const RamayanRPGApp()));
 }
 
 class RamayanRPGApp extends StatelessWidget {
@@ -22,7 +30,7 @@ class RamayanRPGApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
-        //   GameEngine(level: 'lanka_dahan'));
+        // home: GameEngine(level: 'lanka_dahan'));
         home: TitleScreen());
   }
 }
