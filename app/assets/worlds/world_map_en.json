@@ -1,0 +1,122 @@
+{
+    "name": "The Ramayana",
+    "worlds": [
+        {
+            "name": "Bala Kanda",
+            "image": "assets/worlds/baal.jpg",
+            "x": 300,
+            "y": 300,
+            "levels": [
+                {
+                    "name": "The Birth of Rama",
+                    "map": "levels/bala_kanda/level_1.json"
+                },
+                {
+                    "name": "Vishwamitra's Aid",
+                    "map": "levels/bala_kanda/level_2.json"
+                },
+                {
+                    "name": "Sita's Swaymvar",
+                    "map": "levels/bala_kanda/level_3.json"
+                }
+            ]
+        },
+        {
+            "name": "Ayodhya Kanda",
+            "x": 320,
+            "y": 340,
+            "levels": [
+                {
+                    "name": "Rama's Exile",
+                    "map": "levels/ayodhya_kanda/level_1.json"
+                },
+                {
+                    "name": "Bharata's Return",
+                    "map": "levels/ayodhya_kanda/level_2.json"
+                },
+                {
+                    "name": "The Death of Dasaratha",
+                    "map": "levels/ayodhya_kanda/level_3.json"
+                }
+            ]
+        },
+        {
+            "name": "Aranya Kanda",
+            "x": 240,
+            "y": 420,
+            "levels": [
+                {
+                    "name": "The Kidnapping of Sita",
+                    "map": "levels/aranya_kanda/level_1.json"
+                },
+                {
+                    "name": "The Search for Sita",
+                    "map": "levels/aranya_kanda/level_2.json"
+                },
+                {
+                    "name": "The Meeting with Hanuman",
+                    "map": "levels/aranya_kanda/level_3.json"
+                }
+            ]
+        },
+        {
+            "name": "Kishkindha Kanda",
+            "x": 260,
+            "y": 500,
+            "levels": [
+                {
+                    "name": "The Meeting with Sugriva",
+                    "map": "levels/kishkindha_kanda/level_1.json"
+                },
+                {
+                    "name": "The alliance with Sugriva",
+                    "map": "levels/kishkindha_kanda/level_2.json"
+                },
+                {
+                    "name": "The Search for Sita",
+                    "map": "levels/kishkindha_kanda/level_3.json"
+                }
+            ]
+        },
+        {
+            "name": "Sundara Kanda",
+            "x": 260,
+            "y": 630,
+            "isAvailable": true,
+            "levels": [
+                {
+                    "name": "The Leap to Lanka (Coming Soon)",
+                    "map": "levels/sundara_kanda/level_1.json"
+                },
+                {
+                    "name": "The meeting with Sita (Coming Soon)",
+                    "map": "levels/sundara_kanda/level_2.json"
+                },
+                {
+                    "name": "Lanka in Flames",
+                    "isAvailable": true,
+                    "map": "lanka_dahan"
+                }
+            ]
+        },
+        {
+            "name": "Yuddha Kanda",
+            "x": 400,
+            "y": 680,
+            "levels": [
+                {
+                    "name": "The Battle Begins",
+                    "map": "levels/yuddha_kanda/level_1.json"
+                },
+                {
+                    "name": "The Death of Ravana",
+                    "map": "levels/yuddha_kanda/level_2.json"
+                },
+                {
+                    "name": "The Return to Ayodhya",
+                    "map": "levels/yuddha_kanda/level_3.json"
+                }
+            ]
+        }
+    ]
+}

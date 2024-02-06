@@ -1,4 +1,9 @@
 {
     "select_level": "Select Level",
-    "start_game": "Start Game"
+    "start_game": "Start Game",
+    "game_over": "Game Over",
+    "play_again": "Play Again",
+    "try_again": "Try Again",
+    "next_level": "Next Level",
+    "win_message": "You have successfully destroyed Lanka!"
 }

@@ -4,7 +4,8 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
 
 class WorldMapWidget extends StatefulWidget {
-  const WorldMapWidget({super.key});
+  const WorldMapWidget({super.key, required this.locale});
+  final Locale locale;
 
   @override
   State<WorldMapWidget> createState() => _WorldMapWidgetState();
@@ -23,8 +24,9 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
 
   // Load world and level information from a JSON file.
   Future<void> loadWorlds() async {
-    final String jsonString =
-        await rootBundle.loadString('assets/worlds/world_map.json');
+    final String jsonString = widget.locale.languageCode == 'hi'
+        ? await rootBundle.loadString('assets/worlds/world_map_hi.json')
+        : await rootBundle.loadString('assets/worlds/world_map_en.json');
     // worlds = jsonDecode(jsonString).map((e) => LevelInfo.fromJson(e)).toList();
     worlds = (jsonDecode(jsonString)['worlds'] as List)
         .map((e) => LevelInfo.fromJson(e))
@@ -41,13 +43,11 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
             child: Stack(
           children: [
             Image.asset('assets/worlds/world_map.png'),
-            ...worlds
-                .map((e) => WorldTile(
-                    world: e,
-                    onSlelect: () => setState(() {
-                          selectedWorld = e;
-                        })))
-                ,
+            ...worlds.map((e) => WorldTile(
+                world: e,
+                onSlelect: () => setState(() {
+                      selectedWorld = e;
+                    }))),
             if (selectedWorld != null)
               Positioned(
                   left: selectedWorld!.x - 100,

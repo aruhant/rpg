@@ -73,7 +73,8 @@ class _TitleScreenState extends State<TitleScreen> {
                       onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const WorldMapWidget())),
+                              builder: (context) =>
+                                  WorldMapWidget(locale: context.locale))),
                       child: Text('select_level'.tr())),
                   const SizedBox(height: 18),
                   ElevatedButton(

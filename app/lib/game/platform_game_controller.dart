@@ -1,4 +1,5 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:ramayana/title_screen/title_screen.dart';
 import 'player_one.dart';
 import 'flammable_decoration.dart';
@@ -27,18 +28,19 @@ class PlatformGameController extends GameComponent {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('You have successfully destroyed Lanka!'),
+            title: Text('win_message'.tr()),
             actions: [
               TextButton(
                 onPressed: () {
                   reset();
                 },
-                child: const Text('Play Again'),
+                child: Text('play_again'.tr()),
               ),
               TextButton(
                 onPressed: () => Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const TitleScreen())),
-                child: const Text('Next Level'),
+                    MaterialPageRoute(
+                        builder: (context) => const TitleScreen())),
+                child: Text('next_level'.tr()),
               ),
             ],
           );
@@ -54,14 +56,14 @@ class PlatformGameController extends GameComponent {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Game Over'),
+            title: Text('game_over'.tr()),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                   reset();
                 },
-                child: const Text('TRY AGAIN'),
+                child: Text('try_again'.tr()),
               ),
             ],
           );

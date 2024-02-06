@@ -1,119 +1,119 @@
 {
-    "name": "The Ramayana",
+    "name": "रामायण",
     "worlds": [
         {
-            "name": "Bala Kanda",
+            "name": "बाल काण्ड",
             "image": "assets/worlds/baal.jpg",
             "x": 300,
             "y": 300,
             "levels": [
                 {
-                    "name": "The Birth of Rama",
+                    "name": "राम का जन्म",
                     "map": "levels/bala_kanda/level_1.json"
                 },
                 {
-                    "name": "Vishwamitra's Aid",
+                    "name": "विश्वामित्र की सहायता",
                     "map": "levels/bala_kanda/level_2.json"
                 },
                 {
-                    "name": "The Marriage of Rama",
+                    "name": "सीता स्वयंवर",
                     "map": "levels/bala_kanda/level_3.json"
                 }
             ]
         },
         {
-            "name": "Ayodhya Kanda",
+            "name": "अयोध्या काण्ड",
             "x": 320,
             "y": 340,
             "levels": [
                 {
-                    "name": "Rama's Exile",
+                    "name": "राम का वनवास",
                     "map": "levels/ayodhya_kanda/level_1.json"
                 },
                 {
-                    "name": "Bharata's Return",
+                    "name": "भरत मिलन",
                     "map": "levels/ayodhya_kanda/level_2.json"
                 },
                 {
-                    "name": "The Death of Dasaratha",
+                    "name": "दशरथ का वियोग",
                     "map": "levels/ayodhya_kanda/level_3.json"
                 }
             ]
         },
         {
-            "name": "Aranya Kanda",
+            "name": "अरण्य काण्ड",
             "x": 240,
             "y": 420,
             "levels": [
                 {
-                    "name": "The Kidnapping of Sita",
+                    "name": "सीता का अपहरण",
                     "map": "levels/aranya_kanda/level_1.json"
                 },
                 {
-                    "name": "The Search for Sita",
+                    "name": "सीता की खोज",
                     "map": "levels/aranya_kanda/level_2.json"
                 },
                 {
-                    "name": "The Meeting with Hanuman",
+                    "name": "हनुमान से मिलन",
                     "map": "levels/aranya_kanda/level_3.json"
                 }
             ]
         },
         {
-            "name": "Kishkindha Kanda",
+            "name": "किष्किंधा काण्ड",
             "x": 260,
             "y": 500,
             "levels": [
                 {
-                    "name": "The Meeting with Sugriva",
+                    "name": "सुग्रीव से मिलन",
                     "map": "levels/kishkindha_kanda/level_1.json"
                 },
                 {
-                    "name": "The alliance with Sugriva",
+                    "name": "सुग्रीव के साथ साझेदारी",
                     "map": "levels/kishkindha_kanda/level_2.json"
                 },
                 {
-                    "name": "The Search for Sita",
+                    "name": "सीता की खोज",
                     "map": "levels/kishkindha_kanda/level_3.json"
                 }
             ]
         },
         {
-            "name": "Sundara Kanda",
+            "name": "सुंदर काण्ड",
             "x": 260,
             "y": 630,
             "isAvailable": true,
             "levels": [
                 {
-                    "name": "The Leap to Lanka (Coming Soon)",
+                    "name": "लंका की ओर (जल्द आ रहा है)",
                     "map": "levels/sundara_kanda/level_1.json"
                 },
                 {
-                    "name": "The meeting with Sita (Coming Soon)",
+                    "name": "अशोक वाटिका (जल्द आ रहा है)",
                     "map": "levels/sundara_kanda/level_2.json"
                 },
                 {
-                    "name": "Lanka in Flames",
+                    "name": "लंका दहन",
                     "isAvailable": true,
                     "map": "lanka_dahan"
                 }
             ]
         },
         {
-            "name": "Yuddha Kanda",
+            "name": "युद्ध काण्ड",
             "x": 400,
             "y": 680,
             "levels": [
                 {
-                    "name": "The Battle Begins",
+                    "name": "युद्ध की शुरुआत",
                     "map": "levels/yuddha_kanda/level_1.json"
                 },
                 {
-                    "name": "The Death of Ravana",
+                    "name": "रावण का वध",
                     "map": "levels/yuddha_kanda/level_2.json"
                 },
                 {
-                    "name": "The Return to Ayodhya",
+                    "name": "अयोध्या वापसी",
                     "map": "levels/yuddha_kanda/level_3.json"
                 }
             ]
