@@ -352,16 +352,16 @@ class _GameEngineState extends State<GameEngine> {
                 actionId: 'joystickJump',
                 margin: const EdgeInsets.all(70),
                 color: const Color.fromARGB(255, 72, 121, 99)),
-            JoystickAction(
-              actionId: 'joystickFire',
-              sprite: Sprite.load('joystick_attack_range.png'),
-              spriteBackgroundDirection: Sprite.load(
-                'joystick_background.png',
-              ),
-              enableDirection: true,
-              size: 50,
-              margin: const EdgeInsets.only(bottom: 50, right: 160),
-            )
+            // JoystickAction(
+            //   actionId: 'joystickFire',
+            //   sprite: Sprite.load('joystick_attack_range.png'),
+            //   spriteBackgroundDirection: Sprite.load(
+            //     'joystick_background.png',
+            //   ),
+            //   enableDirection: true,
+            //   size: 50,
+            //   margin: const EdgeInsets.only(bottom: 50, right: 160),
+            // )
           ]),
       components: [PlatformGameController(reset: reset)],
       backgroundColor: const Color.fromARGB(255, 41, 140, 185),
