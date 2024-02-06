@@ -87,7 +87,7 @@ class PlatformSpritesheet {
         "platform/jewel.png",
         SpriteAnimationData.sequenced(
           amount: 4,
-          stepTime: 0.08,
+          stepTime: 0.12 ,
           textureSize: Vector2(86, 344 / 4),
         ),
       );
