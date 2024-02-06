@@ -4,8 +4,8 @@
         {
             "name": "Bala Kanda",
             "image": "assets/worlds/baal.jpg",
-            "x": 300,
-            "y": 300,
+            "x": 465,
+            "y": 430,
             "levels": [
                 {
                     "name": "The Birth of Rama",
@@ -23,8 +23,8 @@
         },
         {
             "name": "Ayodhya Kanda",
-            "x": 320,
-            "y": 340,
+            "x": 465,
+            "y": 400,
             "levels": [
                 {
                     "name": "Rama's Exile",
@@ -42,8 +42,8 @@
         },
         {
             "name": "Aranya Kanda",
-            "x": 240,
-            "y": 420,
+            "x": 300,
+            "y": 480,
             "levels": [
                 {
                     "name": "The Kidnapping of Sita",
@@ -61,8 +61,8 @@
         },
         {
             "name": "Kishkindha Kanda",
-            "x": 260,
-            "y": 500,
+            "x": 340,
+            "y": 630,
             "levels": [
                 {
                     "name": "The Meeting with Sugriva",
@@ -80,8 +80,8 @@
         },
         {
             "name": "Sundara Kanda",
-            "x": 260,
-            "y": 630,
+            "x": 380,
+            "y": 780,
             "isAvailable": true,
             "levels": [
                 {
@@ -101,8 +101,8 @@
         },
         {
             "name": "Yuddha Kanda",
-            "x": 400,
-            "y": 680,
+            "x": 450,
+            "y": 840,
             "levels": [
                 {
                     "name": "The Battle Begins",

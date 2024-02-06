@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ramayana/level_picker/level_slector.dart';
@@ -37,30 +39,50 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double side = max(size.width, size.height);
+    double scale = side / 1000;
+    print(scale);
     return Material(
       color: Colors.red,
       child: SingleChildScrollView(
         child: Container(
-          color: Colors.green,
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+          width: side,
+          height: side,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/worlds/world_map.jpg'),
+              fit: BoxFit.cover,
+              alignment: Alignment.topLeft,
+            ),
+          ),
           child: Stack(
-            fit: StackFit.expand,
+            alignment: Alignment.center,
             children: [
-              Image.asset(
-                'assets/worlds/world_map.png',
-                fit: BoxFit.cover,
-              ),
-              //   ...worlds.map((e) => WorldTile(
-              //       world: e,
-              //       onSlelect: () => setState(() {
-              //             selectedWorld = e;
-              //           }))),
-              //   if (selectedWorld != null)
-              //     Positioned(
-              //         left: selectedWorld!.x - 100,
-              //         top: selectedWorld!.y - 100,
-              //         child: LevelSelector(world: selectedWorld!)),
+              // Container(
+              //   width: side,
+              //   height: side,
+              //   decoration: BoxDecoration(
+              //     color: Colors.green.withOpacity(0.3),
+              //     image: DecorationImage(
+              //       image: AssetImage('assets/worlds/world_map.png'),
+              //       opacity: 0.3,
+              //       fit: BoxFit.cover,
+              //       alignment: Alignment.topLeft,
+              //     ),
+              //   ),
+              // ),
+              ...worlds.map((e) => WorldTile(
+                  world: e,
+                  scale: scale,
+                  onSlelect: () => setState(() {
+                        selectedWorld = e;
+                      }))),
+              if (selectedWorld != null)
+                Positioned(
+                    left: (scale * selectedWorld!.x) - 100,
+                    top: (scale * selectedWorld!.y) - 100,
+                    child: LevelSelector(world: selectedWorld!)),
             ],
           ),
         ),
@@ -72,14 +94,19 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
 class WorldTile extends StatelessWidget {
   final LevelInfo world;
   final VoidCallback onSlelect;
-  const WorldTile({super.key, required this.world, required this.onSlelect});
+  final double scale;
+  const WorldTile(
+      {super.key,
+      this.scale = 1,
+      required this.world,
+      required this.onSlelect});
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        left: world.x,
-        top: world.y,
+        left: world.x * scale,
+        top: world.y * scale,
         child: MaterialButton(
-          elevation: 5,
+          elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(3.0),
           ),
@@ -92,7 +119,7 @@ class WorldTile extends StatelessWidget {
               onSlelect();
             }
           },
-          color: world.isAvailable ? Colors.red : Colors.red.withOpacity(0.5),
+          color: world.isAvailable ? Colors.red : Colors.red.withOpacity(0.8),
           child: Text(world.name ?? '',
               style: TextStyle(
                   fontSize: 16,

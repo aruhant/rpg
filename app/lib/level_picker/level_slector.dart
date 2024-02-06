@@ -4,6 +4,7 @@ import 'package:ramayana/level_picker/world_selector.dart';
 
 class LevelSelector extends StatelessWidget {
   final LevelInfo world;
+  static const width = 300.0;
   const LevelSelector({super.key, required this.world});
 
   @override
@@ -13,7 +14,7 @@ class LevelSelector extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
       ),
       clipBehavior: Clip.antiAlias,
-      width: 300,
+      width: width,
       child: ListView(
         shrinkWrap: true,
         children: world.levels!.map((e) => LevelTile(level: e)).toList(),
