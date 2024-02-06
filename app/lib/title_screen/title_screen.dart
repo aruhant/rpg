@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/level_picker/world_selector.dart';
+import 'package:ramayana/title_screen/language_picker.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
 import 'package:video_player/video_player.dart';
 
@@ -45,6 +47,8 @@ class _TitleScreenState extends State<TitleScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  LanguagePicker(),
+                  const SizedBox(height: 20),
                   IconButton(
                       style: ButtonStyle(
                           backgroundColor:
@@ -70,7 +74,7 @@ class _TitleScreenState extends State<TitleScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const WorldMapWidget())),
-                      child: const Text('Select Level')),
+                      child: Text('select_level'.tr())),
                   const SizedBox(height: 18),
                   ElevatedButton(
                       onPressed: () => Navigator.push(
@@ -78,7 +82,7 @@ class _TitleScreenState extends State<TitleScreen> {
                           MaterialPageRoute(
                               builder: (context) =>
                                   const GameEngine(level: 'lanka_dahan'))),
-                      child: const Text('Start Game')),
+                      child: Text('start_game'.tr())),
                 ],
               ),
             ),

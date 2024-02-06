@@ -6,18 +6,20 @@ import 'user_prefs/audioController.dart';
 import 'game/game_engine.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await AudioController.init();
   if (!kIsWeb) {
     await Flame.device.setLandscape();
     await Flame.device.fullScreen();
   }
-  await EasyLocalization.ensureInitialized();
 
   runApp(EasyLocalization(
-      supportedLocales: const [Locale('en', 'US'), Locale('de', 'DE')],
+      supportedLocales: const [Locale('en', 'US'), Locale('hi', 'IN')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en', 'US'),
       child: const RamayanRPGApp()));
@@ -28,7 +30,10 @@ class RamayanRPGApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         debugShowCheckedModeBanner: false,
         // home: GameEngine(level: 'lanka_dahan'));
         home: TitleScreen());
