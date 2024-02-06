@@ -9,6 +9,7 @@ screen to create the game world and the game engine.
 */
 /*MOVED IMPRESSIVE CODE SNIPPET to rakshasa.dart*/
 import 'package:bonfire/bonfire.dart';
+import 'package:flutter/foundation.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'rakshasa.dart';
@@ -328,7 +329,7 @@ class _GameEngineState extends State<GameEngine> {
     // This is used to build sprites and related actions
     return BonfireWidget(
       key: _gameKey,
-      showCollisionArea: false,
+      showCollisionArea: kDebugMode,
       map: WorldMapByTiled(
         TiledReader.asset('maps/${widget.level}_map.tmj'),
         forceTileSize: Vector2(128 * 1.5, 128 * 1.5),
