@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:ramayana/level_picker/level_slector.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -37,24 +38,32 @@ class _WorldMapWidgetState extends State<WorldMapWidget> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: SafeArea(
-        // minimum: const EdgeInsets.all(18.0),
-        child: SingleChildScrollView(
-            child: Stack(
-          children: [
-            Image.asset('assets/worlds/world_map.png'),
-            ...worlds.map((e) => WorldTile(
-                world: e,
-                onSlelect: () => setState(() {
-                      selectedWorld = e;
-                    }))),
-            if (selectedWorld != null)
-              Positioned(
-                  left: selectedWorld!.x - 100,
-                  top: selectedWorld!.y - 100,
-                  child: LevelSelector(world: selectedWorld!)),
-          ],
-        )),
+      color: Colors.red,
+      child: SingleChildScrollView(
+        child: Container(
+          color: Colors.green,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                'assets/worlds/world_map.png',
+                fit: BoxFit.cover,
+              ),
+              //   ...worlds.map((e) => WorldTile(
+              //       world: e,
+              //       onSlelect: () => setState(() {
+              //             selectedWorld = e;
+              //           }))),
+              //   if (selectedWorld != null)
+              //     Positioned(
+              //         left: selectedWorld!.x - 100,
+              //         top: selectedWorld!.y - 100,
+              //         child: LevelSelector(world: selectedWorld!)),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -130,13 +139,13 @@ class LevelInfoDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(world.name ?? ''),
-      content: Text(world.info ?? 'Coming Soon!'),
+      content: Text(world.info ?? 'coming_soon'.tr()),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Close'),
+          child: Text('close'.tr()),
         )
       ],
     );
