@@ -38,7 +38,12 @@ class LevelTile extends StatelessWidget {
       onPressed: () {
         if (level.isAvailable) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => LevelIntro(level: level.map!),
+            builder: (context) => LevelIntro(
+                level: level.map!,
+                onFinished: (context) => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => GameEngine(level: level.map!)))),
           ));
         }
       },

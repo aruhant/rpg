@@ -5,7 +5,9 @@ import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/utils/logging.dart';
 
 class LevelIntro extends StatefulWidget {
-  const LevelIntro({Key? key, required this.level}) : super(key: key);
+  const LevelIntro({Key? key, required this.onFinished, required this.level})
+      : super(key: key);
+  final Function (BuildContext c ) onFinished;
   final String level;
 
   @override
@@ -86,10 +88,7 @@ class _LevelIntroState extends State<LevelIntro> {
         _animationStopped = false;
       });
     } else {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => GameEngine(level: widget.level)));
+      widget.onFinished(context);
     }
   }
 }
