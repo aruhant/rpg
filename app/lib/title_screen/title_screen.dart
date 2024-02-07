@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/level_picker/world_selector.dart';
@@ -19,6 +20,7 @@ class _TitleScreenState extends State<TitleScreen> {
   @override
   void initState() {
     super.initState();
+    AudioController.playBgm('title');
     _controller = VideoPlayerController.asset('assets/splash/splash.mp4')
       ..initialize().then((_) {
         _controller?.play();
@@ -49,6 +51,20 @@ class _TitleScreenState extends State<TitleScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   LanguagePicker(),
+                  const SizedBox(height: 20),
+                  ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white54)),
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  LevelIntro(level: 'credits'))),
+                      child: Text(
+                        'credits'.tr(),
+                        style: TextStyle(color: Colors.black87),
+                      )),
                   const SizedBox(height: 20),
                   IconButton(
                       style: ButtonStyle(

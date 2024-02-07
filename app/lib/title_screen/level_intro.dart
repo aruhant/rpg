@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:ramayana/game/game_engine.dart';
 
 class LevelIntro extends StatelessWidget {
-  const LevelIntro({Key? key, required String level}) : super(key: key);
+  const LevelIntro({Key? key, required this.level}) : super(key: key);
+  final String level;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class LevelIntro extends StatelessWidget {
                   child: AnimatedTextKit(
                       isRepeatingAnimation: false,
                       animatedTexts: [
-                        TypewriterAnimatedText('lanka_dahan_intro'.tr(),
+                        TypewriterAnimatedText('${level}_intro'.tr(),
                             textStyle: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.white,
@@ -34,8 +35,7 @@ class LevelIntro extends StatelessWidget {
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                GameEngine(level: 'lanka_dahan'))),
+                            builder: (context) => GameEngine(level: level))),
                     child: Text('start_game'.tr())),
               ),
             ),
