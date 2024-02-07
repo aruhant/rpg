@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ramayana/game/ui/score_widget.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'rakshasa.dart';
@@ -328,53 +329,63 @@ class _GameEngineState extends State<GameEngine> {
   @override
   Widget build(BuildContext context) {
     // This is used to build sprites and related actions
-    return BonfireWidget(
-      key: _gameKey,
-      showCollisionArea: kDebugMode,
-      map: WorldMapByTiled(
-        TiledReader.asset('maps/${widget.level}_map.tmj'),
-        forceTileSize: Vector2(128 * 1.5, 128 * 1.5),
-        objectsBuilder: {
-          'rakshasa': (properties) => Rakshasa(position: properties.position),
-          'fire': (properties) =>
-              FlammableDecoration(position: properties.position),
+    return LayoutBuilder(builder: (context, constraints) {
+      return BonfireWidget(
+        key: _gameKey,
+        showCollisionArea: kDebugMode,
+        map: WorldMapByTiled(
+          TiledReader.asset('maps/${widget.level}_map.tmj'),
+          forceTileSize: Vector2(128 * 1.5, 128 * 1.5),
+          objectsBuilder: {
+            'rakshasa': (properties) => Rakshasa(position: properties.position),
+            'fire': (properties) =>
+                FlammableDecoration(position: properties.position),
+          },
+        ),
+        // This is used to build the joystick and the game controller
+        joystick: Joystick(
+            keyboardConfig: KeyboardConfig(acceptedKeys: [
+              LogicalKeyboardKey.space,
+            ]),
+            directional: JoystickDirectional(
+              color: const Color.fromARGB(255, 13, 116, 68),
+            ),
+            actions: [
+              JoystickAction(
+                  actionId: 'joystickJump',
+                  margin: const EdgeInsets.all(70),
+                  color: const Color.fromARGB(255, 72, 121, 99)),
+              // JoystickAction(
+              //   actionId: 'joystickFire',
+              //   sprite: Sprite.load('joystick_attack_range.png'),
+              //   spriteBackgroundDirection: Sprite.load(
+              //     'joystick_background.png',
+              //   ),
+              //   enableDirection: true,
+              //   size: 50,
+              //   margin: const EdgeInsets.only(bottom: 50, right: 160),
+              // )
+            ]),
+        components: [PlatformGameController(reset: reset)],
+        backgroundColor: const Color.fromARGB(255, 41, 140, 185),
+        lightingColorGame: Colors.black.withOpacity(0.7),
+        overlayBuilderMap: {
+          'scoreWidget': (context, game) => const ProgressBarWidget()
         },
-      ),
-      // This is used to build the joystick and the game controller
-      joystick: Joystick(
-          keyboardConfig: KeyboardConfig(acceptedKeys: [
-            LogicalKeyboardKey.space,
-          ]),
-          directional: JoystickDirectional(
-            color: const Color.fromARGB(255, 13, 116, 68),
-          ),
-          actions: [
-            JoystickAction(
-                actionId: 'joystickJump',
-                margin: const EdgeInsets.all(70),
-                color: const Color.fromARGB(255, 72, 121, 99)),
-            // JoystickAction(
-            //   actionId: 'joystickFire',
-            //   sprite: Sprite.load('joystick_attack_range.png'),
-            //   spriteBackgroundDirection: Sprite.load(
-            //     'joystick_background.png',
-            //   ),
-            //   enableDirection: true,
-            //   size: 50,
-            //   margin: const EdgeInsets.only(bottom: 50, right: 160),
-            // )
-          ]),
-      components: [PlatformGameController(reset: reset)],
-      backgroundColor: const Color.fromARGB(255, 41, 140, 185),
-      globalForces: [GravityForce2D()],
-      cameraConfig: CameraConfig(
-        moveOnlyMapArea: true,
-        zoom: getZoomFromMaxVisibleTile(context, 12, 128),
-        speed: 2,
-      ),
-      // This is used to build the player and their position
-      player: PlayerOne(position: Vector2(128 * 5, 128 * 12)),
-    );
+
+        initialActiveOverlays: const [
+          'scoreWidget',
+        ],
+        globalForces: [GravityForce2D()],
+        cameraConfig: CameraConfig(
+          moveOnlyMapArea: true,
+          zoom: getZoomFromMaxVisibleTile(context, 12, 128),
+          speed: 2,
+        ),
+        // This is used to build the player and their position
+        player: PlayerOne(position: Vector2(128 * 5, 128 * 12)),
+      );
+    });
   }
 
   void reset() {
