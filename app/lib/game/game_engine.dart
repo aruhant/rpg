@@ -1,6 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ramayana/game/ui/score_widget.dart';
+import 'package:ramayana/title_screen/title_screen.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'rakshasa.dart';
@@ -368,14 +369,24 @@ class _GameEngineState extends State<GameEngine> {
             ]),
         components: [PlatformGameController(reset: reset)],
         backgroundColor: const Color.fromARGB(255, 41, 140, 185),
-        lightingColorGame: Colors.black.withOpacity(0.7),
+        // lightingColorGame: Colors.black.withOpacity(0.7),
         overlayBuilderMap: {
-          'scoreWidget': (context, game) => const ProgressBarWidget()
+          'scoreWidget': (context, game) => const ProgressBarWidget(),
+          'exit': (context, game) => Align(
+                alignment: Alignment.topRight,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const TitleScreen()));
+                      }),
+                ),
+              ),
         },
 
-        initialActiveOverlays: const [
-          'scoreWidget',
-        ],
+        initialActiveOverlays: const ['scoreWidget', 'exit'],
         globalForces: [GravityForce2D()],
         cameraConfig: CameraConfig(
           moveOnlyMapArea: true,
