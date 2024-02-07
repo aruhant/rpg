@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ramayana/game/game_engine.dart';
 import 'package:ramayana/level_picker/world_selector.dart';
+import 'package:ramayana/title_screen/level_intro.dart';
 
 class LevelSelector extends StatelessWidget {
   final LevelInfo world;
@@ -37,7 +38,7 @@ class LevelTile extends StatelessWidget {
       onPressed: () {
         if (level.isAvailable) {
           Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => GameEngine(level: level.map!),
+            builder: (context) => LevelIntro(level: level.map!),
           ));
         }
       },
