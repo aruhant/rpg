@@ -337,6 +337,7 @@ class _GameEngineState extends State<GameEngine> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/maps/${widget.level}_bg.jpg'),
+            alignment: Alignment.topCenter,
             fit: BoxFit.cover,
           ),
         ),
