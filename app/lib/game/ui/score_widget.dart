@@ -13,14 +13,15 @@ class ProgressBarWidget extends StatelessWidget {
         listenable: controller,
         builder: (context, _) {
           return Padding(
-            padding: const EdgeInsets.only(left: 45, top: 60),
+            padding: const EdgeInsets.only(left: 40, top: 40),
             child: Column(
               children: [
                 Row(
                   children: [
                     Text(
-                      '${(controller.goals).toInt()}🔥     ${(controller.enemies).toInt()} 👹',
-                      style: const TextStyle(color: Colors.yellowAccent),
+                      '${(controller.goals).toInt()} 🔥     ${(controller.enemies).toInt()} 👹',
+                      style: const TextStyle(
+                          color: Colors.yellowAccent, fontSize: 20),
                     )
                   ],
                 ),

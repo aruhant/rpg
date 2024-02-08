@@ -11,9 +11,12 @@ class FlammableDecoration extends GameDecoration with Sensor {
     required Vector2 position,
   }) : super.withAnimation(
           animation: PlatformSpritesheet.fire,
-          position: position..translate(0, -8),
-          size: Vector2(128 * 1.5, 128 * 1.5),
+          position: position..translate(0, -20),
+          size: Vector2(128 * 1.2, 128 * 1.2),
         ) {}
+
+  @override
+  void onContactExit(GameComponent component) => onContact(component);
 
   @override
   void onContact(GameComponent component) {
@@ -24,7 +27,7 @@ class FlammableDecoration extends GameDecoration with Sensor {
       PlatformSpritesheet.fireOn.then((fire) {
         setAnimation(fire);
         size = Vector2(128 * 1.5, 116 * 3);
-        position = position..translate(0, -116);
+        position = position..translate(0, -106);
         _onFire = true;
       });
     }
