@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ramayana/game/ui/score_controller.dart';
 import 'package:ramayana/game/ui/score_widget.dart';
 import 'package:ramayana/title_screen/title_screen.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
@@ -392,6 +393,7 @@ class _GameEngineState extends State<GameEngine> {
 
   void reset() {
     setState(() {
+      ProgressBarController().reset();
       _gameKey = UniqueKey();
     });
   }

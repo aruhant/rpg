@@ -11,8 +11,15 @@ class ProgressBarController extends ChangeNotifier {
   ProgressBarController._internal();
 
   double _life = 0;
-  int _goals = 0;
-  int _enemies = 0;
+  int _goals = 28;
+  int _enemies = 15;
+
+  reset() {
+    _life = 0;
+    _goals = 28;
+    _enemies = 15;
+    notifyListeners();
+  }
 
   double get life => _life;
   int get goals => _goals;
