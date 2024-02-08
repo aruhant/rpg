@@ -333,7 +333,7 @@ class _GameEngineState extends State<GameEngine> {
     return LayoutBuilder(builder: (context, constraints) {
       return BonfireWidget(
         key: _gameKey,
-        showCollisionArea: kDebugMode,
+        // showCollisionArea: kDebugMode,
         map: WorldMapByTiled(
           TiledReader.asset('maps/${widget.level}_map.tmj'),
           forceTileSize: Vector2(128 * 1.5, 128 * 1.5),
@@ -349,23 +349,14 @@ class _GameEngineState extends State<GameEngine> {
               LogicalKeyboardKey.space,
             ]),
             directional: JoystickDirectional(
-              color: const Color.fromARGB(255, 13, 116, 68),
+              color: Colors.grey,
             ),
             actions: [
               JoystickAction(
-                  actionId: 'joystickJump',
-                  margin: const EdgeInsets.all(70),
-                  color: const Color.fromARGB(255, 72, 121, 99)),
-              // JoystickAction(
-              //   actionId: 'joystickFire',
-              //   sprite: Sprite.load('joystick_attack_range.png'),
-              //   spriteBackgroundDirection: Sprite.load(
-              //     'joystick_background.png',
-              //   ),
-              //   enableDirection: true,
-              //   size: 50,
-              //   margin: const EdgeInsets.only(bottom: 50, right: 160),
-              // )
+                actionId: 'joystickJump',
+                margin: const EdgeInsets.all(70),
+                color: Colors.grey,
+              ),
             ]),
         components: [PlatformGameController(reset: reset)],
         backgroundColor: const Color.fromARGB(255, 41, 140, 185),
@@ -394,7 +385,7 @@ class _GameEngineState extends State<GameEngine> {
           speed: 2,
         ),
         // This is used to build the player and their position
-        player: PlayerOne(position: Vector2(128 * 5, 128 * 12)),
+        player: PlayerOne(position: Vector2(128 * 5, 128 * 18)),
       );
     });
   }

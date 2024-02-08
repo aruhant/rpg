@@ -134,8 +134,8 @@
                  "type":"rakshasa",
                  "visible":true,
                  "width":112,
-                 "x":4802.06060606061,
-                 "y":2213.45454545455
+                 "x":4285.98100407056,
+                 "y":2177.63364993216
                 }, 
                 {
                  "height":112,
@@ -202,17 +202,6 @@
                  "width":112,
                  "x":10951.1656050955,
                  "y":2173.29936305733
-                }, 
-                {
-                 "height":112,
-                 "id":68,
-                 "name":"rakshasa",
-                 "rotation":0,
-                 "type":"rakshasa",
-                 "visible":true,
-                 "width":112,
-                 "x":756.101910828025,
-                 "y":648.617834394904
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -277,8 +266,8 @@
                  "type":"fire",
                  "visible":true,
                  "width":128,
-                 "x":4992.66666666667,
-                 "y":1535.33333333333
+                 "x":4820.66666666667,
+                 "y":2171.33333333333
                 }, 
                 {
                  "height":128,
@@ -521,6 +510,17 @@
                  "width":128,
                  "x":6905.69696969697,
                  "y":257.212121212121
+                }, 
+                {
+                 "height":128,
+                 "id":69,
+                 "name":"fire",
+                 "rotation":0,
+                 "type":"fire",
+                 "visible":true,
+                 "width":128,
+                 "x":5020,
+                 "y":1508
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -529,7 +529,7 @@
          "y":0
         }],
  "nextlayerid":6,
- "nextobjectid":69,
+ "nextobjectid":70,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.2",
