@@ -62,11 +62,12 @@ class _TitleScreenState extends State<TitleScreen> {
                               builder: (context) => LevelIntro(
                                   level: 'credits',
                                   onFinished: (context) =>
-                                      Navigator.pushReplacement(
+                                      Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  TitleScreen()))))),
+                                                  TitleScreen()),
+                                          (route) => false)))),
                       child: Text(
                         'credits'.tr(),
                         style: TextStyle(color: Colors.black87),
@@ -107,11 +108,12 @@ class _TitleScreenState extends State<TitleScreen> {
                               builder: (context) => LevelIntro(
                                   level: 'lanka_dahan',
                                   onFinished: (context) =>
-                                      Navigator.pushReplacement(
+                                      Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => GameEngine(
-                                                  level: 'lanka_dahan')))))),
+                                                  level: 'lanka_dahan')),
+                                          (route) => false)))),
                       // const GameEngine(level: 'lanka_dahan'))),
                       child: Text('start_game'.tr())),
                 ],

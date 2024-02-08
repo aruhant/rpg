@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ramayana/title_screen/title_screen.dart';
 
 class LanguagePicker extends StatelessWidget {
   const LanguagePicker({Key? key}) : super(key: key);
@@ -17,6 +18,15 @@ class LanguagePicker extends StatelessWidget {
           child: const Text('Language/भाषा')),
       onSelected: (Locale language) {
         context.setLocale(language);
+        Navigator.pushAndRemoveUntil(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation1, animation2) =>
+                const TitleScreen(),
+            transitionDuration: Duration.zero,
+          ),
+          (route) => false,
+        );
       },
       itemBuilder: (BuildContext context) {
         return <PopupMenuEntry<Locale>>[

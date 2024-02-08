@@ -381,9 +381,10 @@ class _GameEngineState extends State<GameEngine> {
                     child: IconButton(
                         icon: const Icon(Icons.close),
                         onPressed: () {
-                          Navigator.of(context).pushReplacement(
+                          Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                  builder: (context) => const TitleScreen()));
+                                  builder: (context) => const TitleScreen()),
+                              (route) => false);
                         }),
                   ),
                 ),

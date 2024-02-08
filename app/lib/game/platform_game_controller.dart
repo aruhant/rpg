@@ -37,9 +37,10 @@ class PlatformGameController extends GameComponent {
                 child: Text('play_again'.tr()),
               ),
               TextButton(
-                onPressed: () => Navigator.of(context).pushReplacement(
+                onPressed: () => Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                        builder: (context) => const TitleScreen())),
+                        builder: (context) => const TitleScreen()),
+                    (route) => false),
                 child: Text('next_level'.tr()),
               ),
             ],
