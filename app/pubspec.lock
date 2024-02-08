@@ -210,7 +210,7 @@ packages:
     source: hosted
     version: "1.1.0"
   flame:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: flame
       sha256: "61c42b966a6b1f44ee093194e6701d45b14fdda1859c14fe68a39489454bfbd4"
