@@ -325,6 +325,7 @@ class _GameEngineState extends State<GameEngine> {
   void initState() {
     super.initState();
     AudioController.playBgm(widget.level);
+    ProgressBarController().reset();
   }
 
   Key _gameKey = GlobalKey();
