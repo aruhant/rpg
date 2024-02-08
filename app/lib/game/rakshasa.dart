@@ -1,11 +1,13 @@
 import 'dart:math';
 import 'package:bonfire/bonfire.dart';
+import 'package:ramayana/game/ui/score_controller.dart';
 import 'package:ramayana/user_prefs/audioController.dart';
 import 'player_one.dart';
 import 'platform_spritesheet.dart';
 
 class Rakshasa extends PlatformEnemy with HandleForces {
   int _timeToWaitBeforeJump = 4000;
+  ProgressBarController controller = ProgressBarController();
   Rakshasa({required super.position})
       : super(
           size: Vector2(471 * .7, 480 * .7),
@@ -46,6 +48,7 @@ class Rakshasa extends PlatformEnemy with HandleForces {
 
   @override
   void die() {
+    controller.enemies--;
     AudioController.playEffect('enemy_die.mp3');
     super.die();
     animation?.playOnce(

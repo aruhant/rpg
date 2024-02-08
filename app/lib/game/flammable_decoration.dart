@@ -13,15 +13,13 @@ class FlammableDecoration extends GameDecoration with Sensor {
           animation: PlatformSpritesheet.fire,
           position: position..translate(0, -8),
           size: Vector2(128 * 1.5, 128 * 1.5),
-        ) {
-    controller.configure(maxLife: 100, maxProgress: controller.maxProgress + 1);
-  }
+        ) {}
 
   @override
   void onContact(GameComponent component) {
     if (component is Player && !_onFire) {
 // change the animation to burning fire
-      controller.increaseProgress(1);
+      controller.goals--;
       AudioController.playEffect('fire.wav');
       PlatformSpritesheet.fireOn.then((fire) {
         setAnimation(fire);

@@ -10,50 +10,34 @@ class ProgressBarController extends ChangeNotifier {
 
   ProgressBarController._internal();
 
-  double _maxLife = 100;
-  double _maxProgress = 0;
-  get maxLife => _maxLife;
-  get maxProgress => _maxProgress;
-
   double _life = 0;
-  double _progress = 0;
+  int _goals = 0;
+  int _enemies = 0;
 
-  double get score => _life;
-  double get progress => _progress;
+  double get life => _life;
+  int get goals => _goals;
+  int get enemies => _enemies;
 
-  set score(double newLife) {
+  set life(double newLife) {
     _life = newLife;
     notifyListeners();
   }
 
-  set progress(double progress) {
-    _progress = progress;
+  set goals(int g) {
+    _goals = g;
     notifyListeners();
   }
 
-  void configure({required double maxLife, required double maxProgress}) {
-    _life = _maxLife = maxLife;
-    _maxProgress = maxProgress;
+  set enemies(int e) {
+    _enemies = e;
     notifyListeners();
   }
 
-  void increaseProgress(int value) {
-    progress += value;
-    if (progress > 100) {
-      progress = 100;
-    }
-  }
-
-  void decrementProgress(int value) {
-    progress -= value;
-    if (progress < 0) {
-      progress = 0;
-    }
-  }
-
-  void updateLife(double life) {
-    if (this.score != life) {
-      this.score = life;
-    }
+  void configure(
+      {required double life, required int goals, required int enemies}) {
+    _life = life;
+    _goals = goals;
+    _enemies = enemies;
+    notifyListeners();
   }
 }

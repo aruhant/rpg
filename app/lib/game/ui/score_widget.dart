@@ -19,17 +19,9 @@ class ProgressBarWidget extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      controller.progress.toInt().toString(),
+                      '${(controller.goals).toInt()}🔥     ${(controller.enemies).toInt()} 👹',
                       style: const TextStyle(color: Colors.yellowAccent),
-                    ),
-                    const Text(
-                      ' / ',
-                      style: TextStyle(color: Colors.yellowAccent),
-                    ),
-                    Text(
-                      controller.maxProgress.toInt().toString(),
-                      style: const TextStyle(color: Colors.yellowAccent),
-                    ),
+                    )
                   ],
                 ),
               ],
