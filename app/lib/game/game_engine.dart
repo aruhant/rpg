@@ -333,61 +333,71 @@ class _GameEngineState extends State<GameEngine> {
   Widget build(BuildContext context) {
     // This is used to build sprites and related actions
     return LayoutBuilder(builder: (context, constraints) {
-      return BonfireWidget(
-        key: _gameKey,
-        // showCollisionArea: kDebugMode,
-        map: WorldMapByTiled(
-          TiledReader.asset('maps/${widget.level}_map.tmj'),
-          forceTileSize: Vector2(128 * 1.5, 128 * 1.5),
-          objectsBuilder: {
-            'rakshasa': (properties) => Rakshasa(position: properties.position),
-            'fire': (properties) =>
-                FlammableDecoration(position: properties.position),
-          },
+      return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/maps/${widget.level}_bg.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
-        // This is used to build the joystick and the game controller
-        joystick: Joystick(
-            keyboardConfig: KeyboardConfig(acceptedKeys: [
-              LogicalKeyboardKey.space,
-            ]),
-            directional: JoystickDirectional(
-              color: Colors.grey,
-            ),
-            actions: [
-              JoystickAction(
-                actionId: 'joystickJump',
-                margin: const EdgeInsets.all(70),
+        child: BonfireWidget(
+          key: _gameKey,
+          // showCollisionArea: kDebugMode,
+          map: WorldMapByTiled(
+            TiledReader.asset('maps/${widget.level}_map.tmj'),
+            forceTileSize: Vector2(128 * 1.5, 128 * 1.5),
+            objectsBuilder: {
+              'rakshasa': (properties) =>
+                  Rakshasa(position: properties.position),
+              'fire': (properties) =>
+                  FlammableDecoration(position: properties.position),
+            },
+          ),
+          // This is used to build the joystick and the game controller
+          joystick: Joystick(
+              keyboardConfig: KeyboardConfig(acceptedKeys: [
+                LogicalKeyboardKey.space,
+              ]),
+              directional: JoystickDirectional(
                 color: Colors.grey,
               ),
-            ]),
-        components: [PlatformGameController(reset: reset)],
-        backgroundColor: const Color.fromARGB(255, 41, 140, 185),
-        // lightingColorGame: Colors.black.withOpacity(0.7),
-        overlayBuilderMap: {
-          'scoreWidget': (context, game) => const ProgressBarWidget(),
-          'exit': (context, game) => Align(
-                alignment: Alignment.topRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => const TitleScreen()));
-                      }),
+              actions: [
+                JoystickAction(
+                  actionId: 'joystickJump',
+                  margin: const EdgeInsets.all(70),
+                  color: Colors.grey,
                 ),
-              ),
-        },
+              ]),
+          components: [PlatformGameController(reset: reset)],
+          backgroundColor: const Color.fromARGB(0, 0, 0, 0),
+          // lightingColorGame: Colors.black.withOpacity(0.7),
+          overlayBuilderMap: {
+            'scoreWidget': (context, game) => const ProgressBarWidget(),
+            'exit': (context, game) => Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => const TitleScreen()));
+                        }),
+                  ),
+                ),
+          },
 
-        initialActiveOverlays: const ['scoreWidget', 'exit'],
-        globalForces: [GravityForce2D()],
-        cameraConfig: CameraConfig(
-          moveOnlyMapArea: true,
-          zoom: getZoomFromMaxVisibleTile(context, 12, 128),
-          speed: 2,
+          initialActiveOverlays: const ['scoreWidget', 'exit'],
+          globalForces: [GravityForce2D()],
+          cameraConfig: CameraConfig(
+            moveOnlyMapArea: true,
+            zoom: getZoomFromMaxVisibleTile(context, 12, 128),
+            speed: 2,
+          ),
+          // This is used to build the player and their position
+          player: PlayerOne(position: Vector2(128 * 5, 128 * 18)),
         ),
-        // This is used to build the player and their position
-        player: PlayerOne(position: Vector2(128 * 5, 128 * 18)),
       );
     });
   }
