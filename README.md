@@ -4,7 +4,12 @@
 This game allows the user to play through popular episodes of the Ramayana as one of its many unique characters.
 
 ## Playable demo
-[Accessible here](https://aruhant.github.io/rpg-demo/)
+[Web version](https://aruhant.github.io/rpg-demo/)
+
+  <a href="https://play.google.com/store/apps/details?id=com.aruhant.ramayana">
+            <img height="40px" alt="Get it on Google Play" src="https://aruhant.github.io/r/and.png" /></a>
+        <a href="https://apps.apple.com/us/app/ramayan-a-timeless-tale/id6477359270">
+            <img height="40px" alt="Get it on App Store" src="https://aruhant.github.io/r/ios.png" /></a>
 
 ## General Game and Game Mechanics & Physics
 
