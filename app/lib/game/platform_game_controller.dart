@@ -1,6 +1,9 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:ramayana/game/rakshasa.dart';
+import 'package:ramayana/game/ui/score_controller.dart';
 import 'package:ramayana/title_screen/title_screen.dart';
+import 'package:ramayana/utils/logging.dart';
 import 'player_one.dart';
 import 'flammable_decoration.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +11,7 @@ import 'package:flutter/material.dart';
 class PlatformGameController extends GameComponent {
   bool showGameOver = false;
   bool showWin = false;
+  ProgressBarController _controller = ProgressBarController();
   final VoidCallback reset;
 
   PlatformGameController({required this.reset});
@@ -21,11 +25,13 @@ class PlatformGameController extends GameComponent {
   }
 
   void _checkWin() {
-    var containGem = gameRef.query<FlammableDecoration>().isNotEmpty;
-    if (!containGem && !showWin) {
+    var winCondition = (_controller.enemies <= 0) && (_controller.goals <= 0);
+    // gameRef.query<FlammableDecoration>().isNotEmpty;
+    if (winCondition && !showWin) {
       showWin = true;
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return AlertDialog(
             title: Text('win_message'.tr()),
@@ -55,6 +61,7 @@ class PlatformGameController extends GameComponent {
       showGameOver = true;
       showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return AlertDialog(
             title: Text('game_over'.tr()),
