@@ -37,7 +37,6 @@ dependencies:
   easy_localization: ^3.0.3
   logger: ^2.0.2+1
   animated_text_kit: ^4.2.2
-  flame: 1.14.0
 
 dev_dependencies:
   flame_lint:
