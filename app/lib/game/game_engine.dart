@@ -356,9 +356,10 @@ class _GameEngineState extends State<GameEngine> {
           ),
           // This is used to build the joystick and the game controller
           joystick: Joystick(
-              keyboardConfig: KeyboardConfig(acceptedKeys: [
-                LogicalKeyboardKey.space,
-              ]),
+              
+            // keyboardConfig: KeyboardConfig(acceptedKeys: [
+              //   LogicalKeyboardKey.space,
+              // ]),
               directional: JoystickDirectional(
                 color: Colors.grey,
               ),
